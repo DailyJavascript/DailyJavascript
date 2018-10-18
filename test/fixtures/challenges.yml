@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  challenge: MyText
+  no_in_series: 1
+  level: 1
+  test_assertions: MyText
+  test_url: MyString
+  video_explanation_url: MyString
+
+two:
+  challenge: MyText
+  no_in_series: 1
+  level: 1
+  test_assertions: MyText
+  test_url: MyString
+  video_explanation_url: MyString

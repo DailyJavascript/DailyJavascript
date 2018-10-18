@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  challenge_id: 1
+  emailed: false
+  date_sent: 2018-10-18 00:14:21
+  ran_tests: false
+  saw_video: false
+
+two:
+  user_id: 1
+  challenge_id: 1
+  emailed: false
+  date_sent: 2018-10-18 00:14:21
+  ran_tests: false
+  saw_video: false

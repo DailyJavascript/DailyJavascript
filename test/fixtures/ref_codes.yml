@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  refcode: MyString
+  destination_url: MyText
+  destination_name: MyString
+
+two:
+  refcode: MyString
+  destination_url: MyText
+  destination_name: MyString

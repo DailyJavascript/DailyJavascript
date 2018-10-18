@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  email: MyString
+  email_verified: false
+  email_verification_code: MyString
+  unsubscribe_code: MyString
+  date_joined: 2018-10-18 00:06:50
+  membership_level: MyString
+  date_current_membership_level: 2018-10-18 00:06:50
+  membership_level_history: MyText
+
+two:
+  email: MyString
+  email_verified: false
+  email_verification_code: MyString
+  unsubscribe_code: MyString
+  date_joined: 2018-10-18 00:06:50
+  membership_level: MyString
+  date_current_membership_level: 2018-10-18 00:06:50
+  membership_level_history: MyText

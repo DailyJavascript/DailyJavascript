@@ -1,0 +1,2 @@
+class RefCode < ApplicationRecord
+end
