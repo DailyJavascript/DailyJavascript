@@ -8,6 +8,10 @@ class UsersController < ApplicationController
 		puts " "
 		puts " "
 		puts params[:email]
+		puts " "
+		puts request.headers
+		puts " "
+		puts request.headers.inspect
 		render plain: "ok"
 	end
 
