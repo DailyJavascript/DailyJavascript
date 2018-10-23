@@ -12,7 +12,7 @@ class UsersController < ApplicationController
 		puts request.headers
 		puts " "
 		puts request.headers.inspect
-		render plain: "ok"
+		render plain: "good good"
 	end
 
 end
