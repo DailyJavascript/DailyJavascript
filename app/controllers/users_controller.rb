@@ -15,7 +15,7 @@ class UsersController < ApplicationController
 
 	def create
 		t = DateTime.now
-		u = User.new(email: params[:email], email_verified: false, email_verification_code: , unsubscribe_code: nil, date_joined: t, membership_level: params[:membershipLevel], date_current_membership_level: t, membership_level_history: nil)
+		u = User.new(email: params[:email], email_verified: false, email_verification_code: nil, unsubscribe_code: nil, date_joined: t, membership_level: params[:membershipLevel], date_current_membership_level: t, membership_level_history: nil)
 		if u.save!
 			u.reload
 			u.email_verification_code = User.createEmailVerificationCode
