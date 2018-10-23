@@ -13,7 +13,7 @@ module Dailyjavascript
 
     config.middleware.insert_before ActionDispatch::Static, Rack::Cors do
     	allow do
-    		origins 'https://goofy-ride-78f323.netlify.com'
+    		origins 'https://goofy-ride-78f322.netlify.com'
     		resource '*', headers: :any, methods: [:get, :post, :options, :put, :patch, :delete]
     	end
     end
