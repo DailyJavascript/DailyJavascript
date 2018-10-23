@@ -5,7 +5,10 @@ class UsersController < ApplicationController
 	end
 
 	def create
-		render 'create'
+		puts " "
+		puts " "
+		puts params[:email]
+		render plain: "ok"
 	end
 
 end
