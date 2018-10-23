@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 	end
 
 	def preflight
-		puts request.headers.inspect
+		puts request.headers[:HTTP_ORIGIN]
 		if request.headers[:HTTP_ORIGIN] == "https://goofy-ride-78f322.netlify.com" || request.headers[:HTTP_ORIGIN] == "http://goofy-ride-78f322.netlify.com"
 			render plain: "proceed"
 		else 
