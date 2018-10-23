@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 	end
 
 	def preflight
-		puts request.headers
+		puts request.headers.inspect
 		render plain: "proceed"
 	end
 
