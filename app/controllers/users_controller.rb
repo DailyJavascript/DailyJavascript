@@ -6,7 +6,7 @@ class UsersController < ApplicationController
 
 	def preflight
 		puts request.headers[:HTTP_ORIGIN]
-		if request.headers[:HTTP_ORIGIN].to_s == "https://goofy-ride-78f322.netlify.com" || request.headers[:HTTP_ORIGIN].to_s == "http://goofy-ride-78f322.netlify.com"
+		if ((request.headers[:HTTP_ORIGIN].to_s == "https://goofy-ride-78f322.netlify.com") || (request.headers[:HTTP_ORIGIN].to_s == "http://goofy-ride-78f322.netlify.com"))
 			render plain: "proceed"
 		else 
 			render plain: "stop"
