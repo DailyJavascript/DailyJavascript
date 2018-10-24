@@ -5,7 +5,6 @@ class UsersController < ApplicationController
 	end
 
 	def preflight
-		puts request.headers[:HTTP_ORIGIN]
 		if ((request.headers[:HTTP_ORIGIN].to_s == "https://goofy-ride-78f322.netlify.com") || (request.headers[:HTTP_ORIGIN].to_s == "http://goofy-ride-78f322.netlify.com"))
 			render plain: "proceed"
 		else 
@@ -19,6 +18,7 @@ class UsersController < ApplicationController
 		if u.save!
 			u.reload
 			u.email_verification_code = User.createEmailVerificationCode
+			u.unsubscribe_code = User.createUnsubscribeCode
 			u.save
 			render plain: "good"
 		else 
