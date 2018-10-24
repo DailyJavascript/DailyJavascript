@@ -1,6 +1,9 @@
 class User < ApplicationRecord
 require 'securerandom'
 
+validates :email, uniqueness: true
+
+
 def self.createEmailVerificationCode
 	code = SecureRandom.hex(36)
 	u = User.find_by(email_verification_code: code)
