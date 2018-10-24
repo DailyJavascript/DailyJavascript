@@ -19,6 +19,10 @@ class UsersController < ApplicationController
 			u.reload
 			u.email_verification_code = User.createEmailVerificationCode
 			u.unsubscribe_code = User.createUnsubscribeCode
+			membership_level_history = {}
+			membership_level_history["level"] = params[:membershipLevel].to_s
+			membership_level_history["date"] = t
+			u.membership_level_history = JSON.generate(membership_level_history)
 			u.save
 			render plain: "good"
 		else 
