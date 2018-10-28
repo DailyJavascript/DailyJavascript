@@ -40,6 +40,7 @@ class UsersController < ApplicationController
 			else
 				u.save
 				output = "good"
+			end
 		end
 		render plain: output
 	end
