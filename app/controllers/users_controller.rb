@@ -17,10 +17,9 @@ class UsersController < ApplicationController
 		u = User.new(email: params[:email], email_verified: false, email_verification_code: nil, unsubscribe_code: nil, date_joined: t, membership_level: params[:membership_level], date_current_membership_level: t, membership_level_history: nil)
 		mc = params[:membership_code].to_s
 		subscription_result = nil
-		if mc == "2"
-			subscription_result = Subscription.subscription_enroll(params[:stripe_token_id], params[:email], params[:membership_level])
-		end
-		if ((mc == "1" || (mc == "2" && subscription_result[0] == 1)) && u.save!)
+		output = "bad"
+		if u.save!
+			result = 1
 			u.reload
 			u.email_verification_code = User.createEmailVerificationCode
 			u.unsubscribe_code = User.createUnsubscribeCode
@@ -29,13 +28,20 @@ class UsersController < ApplicationController
 			membership_level_history["date"] = t
 			u.membership_level_history = JSON.generate(membership_level_history)
 			if mc == "2"
-				u.create_subscription(subscription_id: subscription_result[1], status: "active", plan: params[:membership_level], date_last_charged: DateTime.now, payment_provider: "stripe", payment_provider_user_id: subscription_result[2])
+				subscription_result = Subscription.subscription_enroll(params[:stripe_token_id], params[:email], params[:membership_level])
+				if subscription_result[0] == 1
+					u.create_subscription(subscription_id: subscription_result[1], status: "active", plan: params[:membership_level], date_last_charged: DateTime.now, payment_provider: "stripe", payment_provider_user_id: subscription_result[2])
+				else
+					result = 2
+				end
 			end
-			u.save
-			render plain: "good"
-		else 
-			render plain: "bad"
+			if (mc == "2" && result == 2)
+				u.delete
+			else
+				u.save
+				output = "good"
 		end
+		render plain: output
 	end
 
 	def show_subscriptions
