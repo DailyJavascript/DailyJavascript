@@ -18,7 +18,7 @@ class UsersController < ApplicationController
 		mc = params[:membership_code].to_s
 		subscription_result = nil
 		if mc == "2"
-			subscription_result = Subscription.subscription_enroll(params[:stripe_token_id], params[:email], params[:plan])
+			subscription_result = Subscription.subscription_enroll(params[:stripe_token_id], params[:email], params[:membership_level])
 		end
 		if ((mc == "1" || (mc == "2" && subscription_result[0] == 1)) && u.save!)
 			u.reload
@@ -29,7 +29,7 @@ class UsersController < ApplicationController
 			membership_level_history["date"] = t
 			u.membership_level_history = JSON.generate(membership_level_history)
 			if mc == "2"
-				u.create_subscription(subscription_id: subscription_result[1], status: "active", plan: params[:plan], date_last_charged: DateTime.now, payment_provider: "stripe", payment_provider_user_id: subscription_result[2])
+				u.create_subscription(subscription_id: subscription_result[1], status: "active", plan: params[:membership_level], date_last_charged: DateTime.now, payment_provider: "stripe", payment_provider_user_id: subscription_result[2])
 			end
 			u.save
 			render plain: "good"
