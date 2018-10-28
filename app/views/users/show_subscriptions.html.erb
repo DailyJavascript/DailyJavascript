@@ -1,0 +1,21 @@
+<p>Total Paid Subscriptions: <%= @subs.count %></p>
+
+<table>
+	<thead>
+		<tr>
+			<th>Email</th>
+			<th>Plan</th>
+			<th>Date Signed Up</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<% @subs.each do |sub| %>
+		<tr>
+			<td><%= sub.user.email %></td>
+			<td><%= sub.plan %></td>
+			<td><%= sub.created_at %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>

@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  email: MyString
+  stripe_status: MyString
+  stripe_type: 
+  charge_id: MyString
+  stripe_code: MyString
+  decline_code: MyString
+  message: MyString
+
+two:
+  email: MyString
+  stripe_status: MyString
+  stripe_type: 
+  charge_id: MyString
+  stripe_code: MyString
+  decline_code: MyString
+  message: MyString

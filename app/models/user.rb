@@ -1,6 +1,9 @@
 class User < ApplicationRecord
 require 'securerandom'
 
+has_many :challenges
+has_one :subscription
+
 validates :email, uniqueness: true
 
 

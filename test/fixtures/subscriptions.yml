@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: 
+  subscription_id: MyString
+  status: MyString
+  date_last_charged: 2018-10-26 17:20:07
+  payment_provider: MyString
+  payment_provider_user_id: MyString
+  most_recent_transaction_confirmation_number: MyString
+  payment_history: MyText
+
+two:
+  user: 
+  subscription_id: MyString
+  status: MyString
+  date_last_charged: 2018-10-26 17:20:07
+  payment_provider: MyString
+  payment_provider_user_id: MyString
+  most_recent_transaction_confirmation_number: MyString
+  payment_history: MyText
