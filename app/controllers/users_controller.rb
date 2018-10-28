@@ -18,7 +18,7 @@ class UsersController < ApplicationController
 		mc = params[:membership_code].to_s
 		subscription_result = nil
 		output = "bad"
-		if u.save!
+		if u.save
 			result = 1
 			u.reload
 			u.email_verification_code = User.createEmailVerificationCode
