@@ -8,6 +8,7 @@ class Subscription < ApplicationRecord
     Stripe.api_key = "sk_test_IKTtVCpDqEbM7GV8WVY56ADM"
   	result = []
     result = [0]
+    subscription = nil
     begin
 
       customer = Stripe::Customer.create(
@@ -16,7 +17,7 @@ class Subscription < ApplicationRecord
       )
 
 
-      if (plan.to_s == "eight_dollars")
+    if (plan.to_s == "eight_dollars")
 		subscription = Stripe::Subscription.create(
 			:customer => customer.id,
 			:items => [{plan: 'plan_Ds22YjM4hxrgVQ'}]
