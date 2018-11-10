@@ -22,8 +22,8 @@ gem 'uglifier', '>= 1.3.0'
 
 #Stripe gem to use stripe payment service
 gem 'stripe'
-
-
+# sendgrid is used with heroku and actionmailer to send automated emails. sendgrid is the free email server provided by heroku.
+gem 'sendgrid-ruby'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
