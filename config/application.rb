@@ -6,6 +6,9 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+
+ config.action_mailer.asset_host = "https://goofy-ride-78f322.netlify.com"
+
 module Dailyjavascript
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.

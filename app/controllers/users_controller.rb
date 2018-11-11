@@ -39,6 +39,7 @@ class UsersController < ApplicationController
 				u.delete
 			else
 				u.save
+				UserMailer.welcome_email.deliver_now
 				output = "good"
 			end
 		end
