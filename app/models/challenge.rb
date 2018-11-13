@@ -20,9 +20,9 @@ class Challenge < ApplicationRecord
 						uc.save
 					end
 				else
-					first_challenge = Challenge.find(0)
+					first_challenge = Challenge.find(1)
 					if first_challenge.present?
-						uc = UserChallenge.new(user_id: user.id, challenge_id: 0)
+						uc = UserChallenge.new(user_id: user.id, challenge_id: 1)
 						UserMailer.next_challenge_email(uc.challenge_id, uc.user_id).deliver_now
 						uc.emailed = true
 						uc.date_sent = DateTime.now
