@@ -39,11 +39,20 @@ class UsersController < ApplicationController
 				u.delete
 			else
 				u.save
-				UserMailer.welcome_email(u.email).deliver_now
+				UserMailer.welcome_email(u.email, u.id).deliver_now
 				output = "good"
 			end
 		end
 		render plain: output
+	end
+
+	def unsubscribe
+		user = User.find_by(email: params[:email].to_s, unsubscribe_code: params[:unsubscribe_code].to_s)
+		user_challenges = UserChallenge.where(user_id: user.id)
+		if user_challenges.present?
+			user_challenges.delete_all
+		end
+		user.delete
 	end
 
 	def show_subscriptions
