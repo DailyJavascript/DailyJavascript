@@ -10,9 +10,11 @@
   <body style="margin: 0; padding: 0;">
     <h2 style="width: 100%; background-color: rgb(243, 223, 73); color: black; font-family: Futura, 'Trebuchet MS', Arial, sans-serif; padding: 0.5em 2em; margin: 0 0 1em 0;">Daily JavaScript</h2>
     <%= yield %>
-  	<p>
-  		To stop receiving emails and have your free account deleted, click <a href="https://goofy-ride-78f322.netlify.com/users/unsubscribe?email=<%= @user.email %>&unsubscribe_code=<%= @user.unsubscribe_code %>">Unsubscribe</a>.
+  	<p style="margin: 0; padding-left: 32px; margin: 0 0 1em 0;">
+  		To stop receiving emails and have your free account deleted, click <a href="https://dailyjavascript.herokuapp.com/users/unsubscribe?email=<%= @user.email %>&unsubscribe_code=<%= @user.unsubscribe_code %>">Unsubscribe</a>.
   	</p>
-  	<p> To end paid subscriptions and delete your account, please email us at ... with your email address and your current membership level </p>
+  	<p style="margin: 0; padding-left: 32px; margin: 0 0 1em 0;">
+      To end paid subscriptions and delete your account, please email us at ... with your email address and your current membership level
+    </p>
   </body>
 </html>
