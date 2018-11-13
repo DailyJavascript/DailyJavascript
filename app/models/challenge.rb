@@ -14,7 +14,7 @@ class Challenge < ApplicationRecord
 					next_challenge = Challenge.find(next_challenge_id.to_i)
 					if next_challenge.present?
 						uc = UserChallenge.new(user_id: user.id, challenge_id: next_challenge.id)
-						UserMailer.next_challenge_email(uc.challenge_id, uc.user_id).deliver_now
+						UserMailer.next_challenge_email(uc.challenge_id, user.email).deliver_now
 						uc.emailed = true
 						uc.date_sent = DateTime.now
 						uc.save
@@ -23,7 +23,7 @@ class Challenge < ApplicationRecord
 					first_challenge = Challenge.find(1)
 					if first_challenge.present?
 						uc = UserChallenge.new(user_id: user.id, challenge_id: 1)
-						UserMailer.next_challenge_email(uc.challenge_id, uc.user_id).deliver_now
+						UserMailer.next_challenge_email(uc.challenge_id, user.email).deliver_now
 						uc.emailed = true
 						uc.date_sent = DateTime.now
 						uc.save
