@@ -3,7 +3,7 @@ class Challenge < ApplicationRecord
 	#has_one :test
 
 
-	def self.mail_out_challenges
+	def self.mail_next_challenge
 		users = User.all
 		if users.present? 
 			users.each do |user|
