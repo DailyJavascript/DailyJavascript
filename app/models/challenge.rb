@@ -11,7 +11,7 @@ class Challenge < ApplicationRecord
 				if user_challenges.present? 
 					last_challenge = user_challenges.order(:challenge_id).last
 					next_challenge_id = last_challenge.challenge_id.to_i + 1
-					next_challenge = Challenge.find_by(challenge_id: next_challenge_id.to_i)
+					next_challenge = Challenge.find(next_challenge_id.to_i)
 					if next_challenge.present?
 						uc = UserChallenge.new(user_id: user.id, challenge_id: next_challenge.id)
 						UserMailer.next_challenge_email(uc.challenge_id, uc.user_id).deliver_now
