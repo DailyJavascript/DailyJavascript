@@ -1,2 +1,4 @@
 class ChallengesController < ApplicationController
+
+
 end
