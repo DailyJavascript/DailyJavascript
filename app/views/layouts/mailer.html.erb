@@ -10,8 +10,10 @@
   <body style="margin: 0; padding: 0;">
     <h2 style="width: 100%; background-color: rgb(243, 223, 73); color: black; font-family: Futura, 'Trebuchet MS', Arial, sans-serif; padding: 0.5em 2em; margin: 0 0 1em 0;">Daily JavaScript</h2>
     <%= yield %>
-  	<hr>
-    <p style="margin: 0; padding-left: 32px; margin: 0 0 1em 0;"> 
+  	<p style="margin: 0; padding-left: 32px; margin: 2em 0 2em 0;"> 
+    </p>
+    <hr>
+    <p style="margin: 0; padding-left: 32px; margin: 1em 0 1em 0;"> 
     </p>
     <p style="margin: 0; padding-left: 32px; margin: 0 0 1em 0; color: gray;">
   		To stop receiving emails and have your free account deleted, click <a href="https://dailyjavascript.herokuapp.com/users/unsubscribe?email=<%= @user.email %>&unsubscribe_code=<%= @user.unsubscribe_code %>">Unsubscribe</a>.
