@@ -38,9 +38,9 @@ class Challenge < ApplicationRecord
 		last_user_challenge = UserChallenge.order(:date_sent).last
 		challenges = Challenge.first
 		if challenges.present? && last_user_challenge.present?
-			if Date.now == last_user_challenge.date_sent.to_date
+			if DateTime.now.to_date == last_user_challenge.date_sent.to_date
 				t = Time.now
-				if ( (t >= Time.now.at_beginning_of_day.advance(hours: 6)) && (t <= Time.now.at_beginning_of_day.advance(hours: 19)) ) 
+				if ( (t >= Time.now.at_beginning_of_day.advance(hours: 6)) && (t <= Time.now.at_beginning_of_day.advance(hours: 20)) ) 
 					mail_next_challenge
 				end
 			end
