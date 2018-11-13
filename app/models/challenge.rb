@@ -34,4 +34,20 @@ class Challenge < ApplicationRecord
 	end
 
 
+	def self.check_if_next_challenge_has_been_sent_then_send_out_next_challenge
+		last_user_challenge = UserChallenge.order(:date_sent).last
+		challenges = Challenge.first
+		if challenges.present? && last_user_challenge.present?
+			if Date.current > last_user_challenge.date_sent.to_date
+				t = Time.now
+				if ( (t >= Time.now.at_beginning_of_day.advance(hours: 6)) && (t <= Time.now.at_beginning_of_day.advance(hours: 12)) ) 
+					mail_next_challenge
+				end
+			end
+		elsif challenges.present?
+			mail_next_challenge
+		end
+	end
+
+
 end

@@ -11,6 +11,9 @@ module Dailyjavascript
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.1
 
+    config.time_zone = "Eastern Time (US & Canada)"
+    config.active_record.default_timezone = :local
+
     config.action_mailer.asset_host = "https://goofy-ride-78f322.netlify.com"
 
     config.middleware.insert_before ActionDispatch::Static, Rack::Cors do
