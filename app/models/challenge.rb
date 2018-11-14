@@ -45,7 +45,10 @@ class Challenge < ApplicationRecord
 				end
 			end
 		elsif challenges.present?
-			mail_next_challenge
+			t = Time.now
+			if ( (t >= Time.now.at_beginning_of_day.advance(hours: 11)) && (t <= Time.now.at_beginning_of_day.advance(hours: 17)) ) 
+					mail_next_challenge
+			end
 		end
 	end
 
