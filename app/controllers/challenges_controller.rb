@@ -8,6 +8,8 @@ class ChallengesController < ApplicationController
 		puts params[:challenge]
 		puts params[:code]
 		c = Challenge.new(challenge: params[:challenge])
+		current_id = Challenge.order(:id).last.id.to_i + 1
+		c.id = current_id
 		if c.save
 			if params[:code].to_i == 1
 				Challenge.mail_next_challenge
