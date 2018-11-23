@@ -5,13 +5,7 @@ class UsersController < ApplicationController
 	end
 
 	def preflight
-		puts request.headers[:HTTP_ORIGIN].to_s
-		puts request.headers[:HTTP_ORIGIN].to_s
-		puts request.headers[:HTTP_ORIGIN].to_s
-		puts request.headers[:HTTP_ORIGIN].to_s
-		
-
-		if ((request.headers[:HTTP_ORIGIN].to_s == "https://dailyjavascript.netlify.com") || (request.headers[:HTTP_ORIGIN].to_s == "http://dailyjavascript.netlify.com"))
+		if ((request.headers[:HTTP_ORIGIN].to_s == "https://www.dailyjavascript.io") || (request.headers[:HTTP_ORIGIN].to_s == "http://www.dailyjavascript.io") || (request.headers[:HTTP_ORIGIN].to_s == "http://dailyjavascript.io"))
 			render plain: "proceed"
 		else 
 			render plain: "stop"

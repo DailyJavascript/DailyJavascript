@@ -14,7 +14,7 @@ module Dailyjavascript
     config.time_zone = "Eastern Time (US & Canada)"
     config.active_record.default_timezone = :local
 
-    config.action_mailer.asset_host = "https://dailyjavascript.netlify.com"
+    config.action_mailer.asset_host = "https://www.dailyjavascript.io"
 
     config.middleware.insert_before ActionDispatch::Static, Rack::Cors do
     	allow do
