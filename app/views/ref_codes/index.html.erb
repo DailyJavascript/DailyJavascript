@@ -1,0 +1,7 @@
+<% form_tag("/refcodes", method: "post") do %>
+	<%= label_tag(:destination_name, "Destination name:") %>
+	<%= text_field_tag(:destination_name) %>
+	<%= label_tag(:destination_url, "Destination url:") %>
+	<%= text_field_tag(:destination_url) %>
+	<%= submit_tag("Submit") %>
+<% end %>
