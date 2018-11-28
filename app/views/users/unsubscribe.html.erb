@@ -1,1 +1,5 @@
-<h1>You are unsubscribed!</h1>
+<% if @unsubscribe_result == 1 %>
+	<h1>You are unsubscribed!</h1>
+<% else %>
+	<h1>Unsubsribe was not succcessful. It could be due to the free account already being unsubscribed or the account is a paid account and not a free account. If you have a paid account, and you would like to unsubscribe, please email support@dailyjavascript.io with the subject 'End subscription' and include in the email the email address associated with your account and which monthly membership plan you are currently enrolled in.</h1>
+<% end %>

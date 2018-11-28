@@ -9,6 +9,7 @@ class CreateUsers < ActiveRecord::Migration[5.1]
       t.string :membership_level
       t.datetime :date_current_membership_level
       t.text :membership_level_history
+      t.boolean :active
 
       t.timestamps
     end
