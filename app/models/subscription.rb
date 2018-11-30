@@ -20,12 +20,12 @@ class Subscription < ApplicationRecord
     if (plan.to_s == "eight_dollars")
 		subscription = Stripe::Subscription.create(
 			:customer => customer.id,
-			:items => [{plan: 'plan_Ds22YjM4hxrgVQ'}]
+			:items => [{plan: 'plan_E4NTjVQ20QVTw2'}]
 		)
 	  elsif (plan.to_s == "ten_dollars")
 		subscription = Stripe::Subscription.create(
 			:customer => customer.id,
-			:items => [{plan: 'plan_Ds22VhRBnlzPl3'}]
+			:items => [{plan: 'plan_E4NS1UaD5Q8q1D'}]
 		 )	  	
 	  end
 
