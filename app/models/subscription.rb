@@ -5,7 +5,7 @@ class Subscription < ApplicationRecord
 
   def self.subscription_enroll(token_id, email, plan)
 
-    Stripe.api_key = "sk_test_IKTtVCpDqEbM7GV8WVY56ADM"
+    Stripe.api_key = ENV['STRIPE_SECRET_KEY']
   	result = []
     result = [0]
     subscription = nil
