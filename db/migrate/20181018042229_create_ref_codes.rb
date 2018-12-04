@@ -7,6 +7,7 @@ class CreateRefCodes < ActiveRecord::Migration[5.1]
       t.string :destination_name
       t.string :email
       t.text :email_content
+      t.boolean :email_sent
       
       t.timestamps
     end
