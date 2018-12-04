@@ -5,15 +5,15 @@ class InputFields extends React.Component {
 				<label>
 					Destination Name
 				</label>
-				<input type="text" name="destinationName" id="destinationName" onChange=props.handleInput value=props.values.destinationName />
+				<input type="text" name="destinationName" id="destinationName" onChange={props.handleInput} value={props.values.destinationName} />
 				<label>
 					Destination URL
 				</label>
-				<input type="text" name="destinationURL" id="DestinationURL" onChange=props.handleInput value=props.values.destinationURL />
+				<input type="text" name="destinationURL" id="DestinationURL" onChange={props.handleInput} value={props.values.destinationURL} />
 				<label>
 					Email
 				</label>
-				<input type="text" name="email" id="email" onChange=props.handleInput value=props.values.email />
+				<input type="text" name="email" id="email" onChange={props.handleInput} value={props.values.email} />
 				<label>
 					Email Content
 				</label>
