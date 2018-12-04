@@ -3,7 +3,8 @@ function getListOfRefCodesFromServer() {
 	xhr.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
 			console.log(this.responseText);
-			return this.responseText;
+			console.log(this.responseText.name);
+			return [this.responseText];
 		}
 	}
 	xhr.open("get","/ref_codes/all",true);
@@ -48,7 +49,6 @@ class ListOfRefCodes extends React.Component {
 
 	componentDidMount() {
 		this.list = getListOfRefCodesFromServer();
-		console.log(this.list);
 		this.setState({list: this.list});
 	}
 
