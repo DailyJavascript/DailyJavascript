@@ -34,7 +34,7 @@ class InputFields extends React.Component {
 class ListOfRefCodes extends React.Component {
 
 	componentDidMount() {
-		list = JSON.parse(getListOfRefCodesFromServer());
+		this.list = JSON.parse(getListOfRefCodesFromServer());
 	}
 
 
