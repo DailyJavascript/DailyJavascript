@@ -31,20 +31,25 @@ class RefCodes extends React.Component {
 		this.state = { 
 			email: '',
 			destinationName: '',
-			destinationURL: ''
+			destinationURL: '',
+			change: ''
 		};
 	}
 
 	handleInput = e => {
 		const {id,value} = e.target;
 		this.setState({
-			[id]:value
+			[id]:value,
+			change:value;
 		});
 	}
 
 
 	render() {
-		return <InputFields handleInput={this.handleInput} values={this.state} />;
+		return (
+			<InputFields handleInput={this.handleInput} values={this.state} />
+			<input value=this.state.change />
+		};
 	}
 
 
