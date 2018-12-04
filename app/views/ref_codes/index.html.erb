@@ -1,7 +1,9 @@
-<% form_tag("/refcodes", method: "post") do %>
+<% form_tag("/ref_codes", method: "post") do %>
 	<%= label_tag(:destination_name, "Destination name:") %>
 	<%= text_field_tag(:destination_name) %>
 	<%= label_tag(:destination_url, "Destination url:") %>
 	<%= text_field_tag(:destination_url) %>
 	<%= submit_tag("Submit") %>
 <% end %>
+
+<h1>does it work</h1>
