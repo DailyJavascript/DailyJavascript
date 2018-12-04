@@ -8,7 +8,7 @@ layout "ref_codes"
 	end
 
 	def show_all
-		render json: { :name => "bootcamp", :url => "http://bootcamp", :email => "watid2010"}
+		render plain: { :name => "bootcamp", :url => "http://bootcamp", :email => "watid2010"}.to_json
 	end
 
 end
