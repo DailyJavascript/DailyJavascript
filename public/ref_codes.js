@@ -42,7 +42,7 @@ class InputFields extends React.Component {
 class ListOfRefCodes extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {list: {}};
+		this.state = {list: {name: '', url: '', email: ''}};
 	}
 
 
