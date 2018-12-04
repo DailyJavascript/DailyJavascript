@@ -7,8 +7,14 @@ class InputFields extends React.Component {
 
 	render() {
 		return (
-			<h1>Destination Url</h1>
-			<input type="text" name="destinationUrl" id="destinationUrl" />
+			<form>
+				<h1>
+					Destination Url
+				</h1>
+				
+				<input type="text" name="destinationUrl" id="destinationUrl" />
+
+			</form>
 			);
 	}
 } // end class InputFields
