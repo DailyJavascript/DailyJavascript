@@ -2,8 +2,10 @@ function getListOfRefCodesFromServer() {
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
-			console.log(this.responseText);
-			return JSON.parse(this.responseText);
+			var test = JSON.parse(this.responseText);
+			console.log("in getlistofre from server");
+			console.log(test);
+			return test;
 		}
 	}
 	xhr.open("get","/ref_codes/all",true);
@@ -58,7 +60,7 @@ class ListOfRefCodes extends React.Component {
 	render() {
 		return (
 			<div>	
-				<p><span>Destination Name: </span><span>{this.state}</span><span>Email: </span><span>{this.state}</span></p>
+				<p><span>Destination Name: </span><span>{this.state.list.name}</span><span>Email: </span><span>{this.state.list.email}</span></p>
 				<p><span>Destination URL: </span><span></span></p>
 				<p><span>Email Content: </span></p>
 				<p></p>
