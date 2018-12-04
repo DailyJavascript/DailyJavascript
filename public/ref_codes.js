@@ -51,7 +51,7 @@ class RefCodes extends React.Component {
 				<InputFields handleInput={this.handleInput} values={this.state} />
 				<input type="text" value={this.state.change} />
 			</div>
-		};
+		);
 	}
 
 
