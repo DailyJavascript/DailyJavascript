@@ -8,6 +8,6 @@ Rails.application.routes.draw do
   resources :users
   resources :challenges
   resources :payments
-  resources :refcodes
+  resources :ref_codes
 
 end
