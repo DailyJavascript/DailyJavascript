@@ -49,7 +49,7 @@ class RefCodes extends React.Component {
 		return (
 			<div>
 				<InputFields handleInput={this.handleInput} values={this.state} />
-				<input value=this.state.change />
+				<input type="text" value={this.state.change} />
 			</div>
 		};
 	}
