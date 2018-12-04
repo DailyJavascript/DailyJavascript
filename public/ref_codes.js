@@ -3,8 +3,7 @@ function getListOfRefCodesFromServer() {
 	xhr.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
 			console.log(this.responseText);
-			console.log(typeof this.responseText);
-			return [this.responseText];
+			return JSON.parse(this.responseText);
 		}
 	}
 	xhr.open("get","/ref_codes/all",true);
@@ -43,7 +42,7 @@ class InputFields extends React.Component {
 class ListOfRefCodes extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {list: []};
+		this.state = {list: {}};
 	}
 
 
