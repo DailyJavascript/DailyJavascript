@@ -8,7 +8,10 @@ layout "ref_codes"
 	end
 
 	def show_all
-		data = { name: "bootcamp", url: "http://bootcamp", email: "watid2005" }
+		data = {}
+		data["name"] =  "bootcamp"
+		data["url"] = "http://bootcamp"
+		data["email"] = "watid2005" 
 		render json: data
 	end
 
