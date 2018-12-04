@@ -1,19 +1,25 @@
 class InputFields extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {};
-	}
-
 
 	render() {
 		return (
 			<form>
-				<h1>
-					Destination Url
-				</h1>
-				
-				<input type="text" name="destinationUrl" id="destinationUrl" />
-
+				<label>
+					Destination Name
+				</label>
+				<input type="text" name="destinationName" id="destinationName" />
+				<label>
+					Destination URL
+				</label>
+				<input type="text" name="destinationURL" id="DestinationURL" />
+				<label>
+					Email
+				</label>
+				<input type="text" name="email" id="email" />
+				<label>
+					Email Content
+				</label>
+				<textarea>
+				</textarea>
 			</form>
 			);
 	}
