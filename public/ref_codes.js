@@ -58,7 +58,7 @@ class ListOfRefCodes extends React.Component {
 	render() {
 		return (
 			<div>	
-				<p><span>Destination Name: </span><span>{this.state.list.name}</span><span>Email: </span><span>{this.state.list.email}</span></p>
+				<p><span>Destination Name: </span><span>{this.state}</span><span>Email: </span><span>{this.state}</span></p>
 				<p><span>Destination URL: </span><span></span></p>
 				<p><span>Email Content: </span></p>
 				<p></p>
