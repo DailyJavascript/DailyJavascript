@@ -76,7 +76,7 @@ class RefCodes extends React.Component {
 		return (
 			<div>
 				<InputFields handleInput={this.handleInput} values={this.state} />
-				<hr>
+				<hr />
 				<input type="text" value={this.state.change} />
 				<ListOfRefCodes />
 			</div>
