@@ -1,7 +1,12 @@
+function getListOfRefCodesFromServer() {
+	return JSON.stringify({a: 1, b: 2});
+}
+
+
 class InputFields extends React.Component {
 	render() {
 		return (
-			<form>
+			<div>
 				<label>
 					Destination Name
 				</label>
@@ -20,12 +25,32 @@ class InputFields extends React.Component {
 				<textarea>
 				</textarea>
 				<button>Add</button>
-
-			</form>
+			</div>
 			);
 	}
 } // end class InputFields
 
+
+class ListOfRefCodes extends React.Component {
+
+	componentDidMount() {
+		list = JSON.parse(getListOfRefCodesFromServer());
+	}
+
+
+	render() {
+		return (
+			<div>	
+				<p><span>Destination Name: </span><span></span><span>Email: </span><span></span></p>
+				<p><span>Destination URL: </span><span></span></p>
+				<p><span>Email Content: </span></p>
+				<p></p>
+			</div>
+		);
+	}
+
+
+} // end class ListOfRefCodes
 
 class RefCodes extends React.Component {
 	constructor(props) {
@@ -51,7 +76,9 @@ class RefCodes extends React.Component {
 		return (
 			<div>
 				<InputFields handleInput={this.handleInput} values={this.state} />
+				<hr>
 				<input type="text" value={this.state.change} />
+				<ListOfRefCodes />
 			</div>
 		);
 	}
