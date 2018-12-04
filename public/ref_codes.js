@@ -10,6 +10,7 @@ function getListOfRefCodesFromServer() {
 	}
 	xhr.open("get","/ref_codes/all",true);
 	xhr.send();
+	return {name: '', url: '', email: ''};
 }
 
 
