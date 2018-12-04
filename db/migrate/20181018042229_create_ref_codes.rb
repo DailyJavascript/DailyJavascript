@@ -5,7 +5,9 @@ class CreateRefCodes < ActiveRecord::Migration[5.1]
       t.text :refcode_url
       t.text :destination_url
       t.string :destination_name
-
+      t.string :email
+      t.text :email_content
+      
       t.timestamps
     end
   end
