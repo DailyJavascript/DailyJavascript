@@ -37,7 +37,7 @@ class RefCodes extends React.Component {
 	}
 
 	handleInput = e => {
-		const {id,value} = e.target;
+		const {target : {id, value}} = e;
 		this.setState({
 			[id]:value,
 			change:value
