@@ -42,7 +42,7 @@ class RefCodes extends React.Component {
 		const {target : {id, value}} = e;
 		this.setState({
 			[id]:value,
-			change:"aaa"+value
+			change:value
 		});
 	}
 
