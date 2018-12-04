@@ -19,6 +19,8 @@ class InputFields extends React.Component {
 				</label>
 				<textarea>
 				</textarea>
+				<button>Add</button>
+
 			</form>
 			);
 	}
@@ -36,7 +38,7 @@ class RefCodes extends React.Component {
 		};
 	}
 
-	handleInput = e => {
+	handleInput = (e) => {
 		const {target : {id, value}} = e;
 		this.setState({
 			[id]:value,
