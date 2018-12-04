@@ -9,7 +9,7 @@ class InputFields extends React.Component {
 				<label>
 					Destination URL
 				</label>
-				<input type="text" name="destinationURL" id="DestinationURL" onChange={this.props.handleInput} value={this.props.values.destinationURL} />
+				<input type="text" name="destinationURL" id="destinationURL" onChange={this.props.handleInput} value={this.props.values.destinationURL} />
 				<label>
 					Email
 				</label>
