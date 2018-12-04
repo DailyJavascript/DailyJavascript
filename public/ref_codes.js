@@ -38,7 +38,7 @@ class RefCodes extends React.Component {
 	handleInput = e => {
 		const {id,value} = e.target;
 		this.setState({
-			id:value
+			[id]:value
 		});
 	}
 
