@@ -7,4 +7,8 @@ layout "ref_codes"
 	def create
 	end
 
+	def show_all
+		render json: { name: "bootcamp", url: "http://bootcamp", email: "watid2005"}.to_json
+	end
+
 end

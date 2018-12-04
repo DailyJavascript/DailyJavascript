@@ -1,5 +1,13 @@
 function getListOfRefCodesFromServer() {
-	return JSON.stringify({a: 1, b: 2});
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status = 200) {
+			console.log(this.responseText);
+			return this.responseText;
+		}
+	}
+	xhr.open("get","/ref_codes/all",true);
+	xhr.send();
 }
 
 
@@ -32,9 +40,16 @@ class InputFields extends React.Component {
 
 
 class ListOfRefCodes extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {list: []};
+	}
+
 
 	componentDidMount() {
 		this.list = JSON.parse(getListOfRefCodesFromServer());
+		console.log(this.list);
+		this.setState({list: this.list});
 	}
 
 
