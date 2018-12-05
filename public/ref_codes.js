@@ -32,6 +32,7 @@ class ListOfRefCodes extends React.Component {
 		this.state = {list: {name: '', url: '', email: ''}};
 		console.log("in constructor");
 		console.log(this.state);
+		this.setState = this.setState.bind(this);
 	}
 
 	getListOfRefCodesFromServer(callback) {
