@@ -1,8 +1,8 @@
 class CreateRefCodes < ActiveRecord::Migration[5.1]
   def change
     create_table :ref_codes do |t|
-      t.string :refcode
-      t.text :refcode_url
+      t.string :ref_code
+      t.text :ref_code_url
       t.string :recipient_name
       t.text :recipient_url
       t.string :recipient_email
