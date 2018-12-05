@@ -41,7 +41,7 @@ class ListOfRefCodes extends React.Component {
 				var test = JSON.parse(this.responseText);
 				console.log("in getlistofre from server");
 				console.log(test);
-				return test;
+				this.setState({list: test});
 			}
 		}
 		xhr.open("get","/ref_codes/all",true);
