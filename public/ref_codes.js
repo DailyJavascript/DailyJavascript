@@ -10,10 +10,11 @@ function getListOfRefCodesFromServer(callback) {
 } // end function getListOfRefCodesFromServer(callback)
 
 
-function submitRequest(name,url,email,emailContent) {
+function submitRequest(name, url, email, emailContent, callback) {
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
+			callback({recipientName: '', recipientURL: '', recipientEmail: '', emailContent: '', change: ''});
 			alert(this.responseText);
 		}
 	} // end xhr.onreadystatechange
@@ -98,6 +99,7 @@ class RefCodes extends React.Component {
 			emailContent: '',
 			change: ''
 		};
+		this.setState = this.setState.bind(this);
 	}
 
 
@@ -114,7 +116,7 @@ class RefCodes extends React.Component {
 		if ((this.state.recipientEmail.trim() != "") && (this.state.emailContent.trim() == "")) {
 			cont = confirm("Email is filled out but email content is blank. Are you sure you want to submit as is?");
 		}
-		if (cont) submitRequest(this.state.recipientName, this.state.recipientURL, this.state.recipientEmail, this.state.emailContent);
+		if (cont) submitRequest(this.state.recipientName, this.state.recipientURL, this.state.recipientEmail, this.state.emailContent, this.setState);
 	}
 
 
