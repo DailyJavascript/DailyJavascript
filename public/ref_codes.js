@@ -1,3 +1,18 @@
+getListOfRefCodesFromServer(callback) {
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			var test = JSON.parse(this.responseText);
+			console.log("in getlistofre from server");
+			console.log(test);
+			callback({list: test});
+		}
+	}
+	xhr.open("get","/ref_codes/all",true);
+	xhr.send();
+}
+
+
 class InputFields extends React.Component {
 	render() {
 		return (
@@ -35,23 +50,8 @@ class ListOfRefCodes extends React.Component {
 		this.setState = this.setState.bind(this);
 	}
 
-	getListOfRefCodesFromServer(callback) {
-		var xhr = new XMLHttpRequest();
-		xhr.onreadystatechange = function() {
-			if (this.readyState == 4 && this.status == 200) {
-				var test = JSON.parse(this.responseText);
-				console.log("in getlistofre from server");
-				console.log(test);
-				callback({list: test});
-			}
-		}
-		xhr.open("get","/ref_codes/all",true);
-		xhr.send();
-		return {name: '', url: '', email: ''};
-	}
-
 	componentDidMount() {
-		this.getListOfRefCodesFromServer(this.setState);
+		getListOfRefCodesFromServer(this.setState);
 		console.log("in componentDidMount");
 		console.log(this.state);
 	}
