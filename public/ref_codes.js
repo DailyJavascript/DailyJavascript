@@ -57,16 +57,15 @@ class ListOfRefCodes extends React.Component {
 	}
 
 	render() {
-		return (
-			{this.state.list.map((listItem) => 
+		const listItems = this.state.list.map((listItem) => 
 			<div>	
 				<p><span>Destination Name: </span><span>{listItem.name}</span><span>Email: </span><span>{listItem.email}</span></p>
 				<p><span>Destination URL: </span><span>{listItem.url}</span></p>
 				<p><span>Email Content: </span></p>
 				<p></p>
 			</div>
-			)}
-		);
+			);
+		return ( {listItems} );
 	}
 
 
