@@ -14,7 +14,7 @@ function submitRequest(name, url, email, emailContent, callback) {
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
-			callback({recipientName: '', recipientURL: '', recipientEmail: '', emailContent: '', change: ''});
+			callback({recipientName: '', recipientURL: '', recipientEmail: '', emailContent: '', submitted: true});
 			alert(this.responseText);
 		}
 	} // end xhr.onreadystatechange
@@ -78,6 +78,9 @@ class ListOfRefCodes extends React.Component {
 		getListOfRefCodesFromServer(this.setState);
 	}
 
+	componentDidUpdate() {
+		if (this.props.newSubmission) getListOfRefCodesFromServer(this.setState);
+	}
 
 	render() {
 		const listItems = this.state.list.map((listItem) => <RefListing key={listItem.recipientURL} listItem={listItem}/>);
@@ -97,7 +100,7 @@ class RefCodes extends React.Component {
 			recipientURL: '',
 			recipientEmail: '',
 			emailContent: '',
-			change: ''
+			submitted: false
 		};
 		this.setState = this.setState.bind(this);
 	}
@@ -107,7 +110,7 @@ class RefCodes extends React.Component {
 		const {target : {id, value}} = e;
 		this.setState({
 			[id]: value,
-			change: value
+			submitted: false
 		});
 	}
 
@@ -125,7 +128,7 @@ class RefCodes extends React.Component {
 			<div>
 				<InputFields handleInput={this.handleInput} handleAdd={this.handleAdd} values={this.state} />
 				<hr />
-				<ListOfRefCodes />
+				<ListOfRefCodes newSubmission={this.state.submitted}/>
 			</div>
 		);
 	}
