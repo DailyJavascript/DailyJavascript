@@ -66,7 +66,7 @@ class ListOfRefCodes extends React.Component {
 			</div>
 			);
 		
-		return {listItems};
+		return (<div>{listItems}</div>);
 	}
 
 
