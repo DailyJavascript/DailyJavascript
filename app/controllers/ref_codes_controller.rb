@@ -5,6 +5,7 @@ layout "ref_codes"
 	end
 
 	def create
+		render plain: "it worked!"
 	end
 
 	def show_all

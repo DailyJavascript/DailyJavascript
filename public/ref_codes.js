@@ -2,15 +2,25 @@ function getListOfRefCodesFromServer(callback) {
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
-			var test = JSON.parse(this.responseText);
-			console.log("in getlistofre from server");
-			console.log(test);
-			callback({list: test});
+			callback({list: JSON.parse(this.responseText)});
 		}
 	}
 	xhr.open("get","/ref_codes/all",true);
 	xhr.send();
-}
+} // end function getListOfRefCodesFromServer(callback)
+
+
+function submitRequest(name,url,email,emailContent) {
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			alert(this.responseText);
+		}
+	} // end xhr.onreadystatechange
+	xhr.open("post","/ref_codes",true);
+	xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded")
+	xhr.send("recipientName="+name+"&recipientURL="+url+"&recipientEmail="+email+"&emailContent="+emailContent);
+} // end function submitRequest(name,url,email,emailContent)
 
 
 function RefListing(props) {
@@ -25,6 +35,7 @@ function RefListing(props) {
 			</div>
 			);
 } // end function RefListing(props)
+
 
 class InputFields extends React.Component {
 	render() {
@@ -45,9 +56,9 @@ class InputFields extends React.Component {
 				<label>
 					Email Content
 				</label>
-				<textarea>
+				<textarea name="emailContent" id="emailContent" onChange={this.props.handleInput} value={this.props.values.emailContent}>
 				</textarea>
-				<button>Add</button>
+				<button onClick={() => this.props.handleAdd}>Add</button>
 			</div>
 			);
 	}
@@ -58,16 +69,14 @@ class ListOfRefCodes extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {list: []};
-		console.log("in constructor");
-		console.log(this.state);
 		this.setState = this.setState.bind(this);
 	}
 
+
 	componentDidMount() {
 		getListOfRefCodesFromServer(this.setState);
-		console.log("in componentDidMount");
-		console.log(this.state);
 	}
+
 
 	render() {
 		const listItems = this.state.list.map((listItem) => <RefListing key={listItem.recipientURL} listItem={listItem}/>);
@@ -76,44 +85,49 @@ class ListOfRefCodes extends React.Component {
 		else 
 			return (<div>{listItems}</div>);
 	}
-
-
 } // end class ListOfRefCodes
+
 
 class RefCodes extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = { 
-			recipientEmail: '',
 			recipientName: '',
 			recipientURL: '',
+			recipientEmail: '',
+			emailContent: '',
 			change: ''
 		};
 	}
 
+
 	handleInput = (e) => {
 		const {target : {id, value}} = e;
 		this.setState({
-			[id]:value,
-			change:value
+			[id]: value,
+			change: value
 		});
+	}
+
+	handleAdd = (e) => {
+		var cont = true;
+		if ((this.state.recipientEmail.trim() != "") && (this.state.emailContent.trim() == "")) {
+			cont = confirm("Email is filled out but email content is blank. Are you sure you want to submit as is?");
+		}
+		submitRequest(this.state.recipientName, this.state.recipientURL, this.state.recipientEmail, this.state.emailContent);
 	}
 
 
 	render() {
 		return (
 			<div>
-				<InputFields handleInput={this.handleInput} values={this.state} />
+				<InputFields handleInput={this.handleInput} handleAdd={this.handleAdd} values={this.state} />
 				<hr />
 				<ListOfRefCodes />
 			</div>
 		);
 	}
-
-
-
 } // end class RefCodes
-
 
 
 ReactDOM.render(<RefCodes />, document.getElementById("root"));
