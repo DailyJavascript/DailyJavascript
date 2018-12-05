@@ -82,7 +82,7 @@ class ListOfRefCodes extends React.Component {
 	}
 
 	render() {
-		const listItems = this.state.list.map((listItem, index) => var  a = <RefListing key={listItem.recipientURL} listItem={listItem}/>; var b = (index == this.state.list.length-1) ? <br><span>****</span> : <br>; return a+b;);
+		const listItems = this.state.list.map((listItem, index) => if (index == this.state.list.length-1) return (<RefListing key={listItem.recipientURL} listItem={listItem}/>); else return (<RefListing key={listItem.recipientURL} listItem={listItem}/><br><span>****</span>) );
 		if (!listItems || listItems.length == 0)
 			return (<div>No List Items Yet</div>);
 		else 
