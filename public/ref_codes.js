@@ -34,14 +34,14 @@ class ListOfRefCodes extends React.Component {
 		console.log(this.state);
 	}
 
-	getListOfRefCodesFromServer() {
+	getListOfRefCodesFromServer(callback) {
 		var xhr = new XMLHttpRequest();
 		xhr.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 200) {
 				var test = JSON.parse(this.responseText);
 				console.log("in getlistofre from server");
 				console.log(test);
-				this.parent.setState({list: test});
+				callback({list: test});
 			}
 		}
 		xhr.open("get","/ref_codes/all",true);
@@ -50,7 +50,7 @@ class ListOfRefCodes extends React.Component {
 	}
 
 	componentDidMount() {
-		this.setState({list: this.getListOfRefCodesFromServer()});
+		this.getListOfRefCodesFromServer(this.setState);
 		console.log("in componentDidMount");
 		console.log(this.state);
 	}
