@@ -65,7 +65,7 @@ class ListOfRefCodes extends React.Component {
 				<p><span>Email Content: </span></p>
 				<p></p>
 			</div>
-			}
+			});
 		);
 	}
 
