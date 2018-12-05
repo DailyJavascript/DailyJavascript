@@ -13,22 +13,33 @@ function getListOfRefCodesFromServer(callback) {
 }
 
 
+function RefListing(props) {
+	return 	(
+			<div>	
+				<p><span>Recipient Name: </span><span>{props.listItem.recipientName}</span><span>Recipient Email: </span><span>{props.listItem.recipientEmail}</span></p>
+				<p><span>Recipient URL: </span><span>{props.listItem.recipientURL}</span></p>
+				<p><span>Email Content: </span></p>
+				<p></p>
+			</div>
+			);
+} // end function RefListing(props)
+
 class InputFields extends React.Component {
 	render() {
 		return (
 			<div>
 				<label>
-					Destination Name
+					Recipient Name
 				</label>
-				<input type="text" name="destinationName" id="destinationName" onChange={this.props.handleInput} value={this.props.values.destinationName} />
+				<input type="text" name="recipientName" id="recipientName" onChange={this.props.handleInput} value={this.props.values.recipientName} />
 				<label>
-					Destination URL
+					Recipient URL
 				</label>
-				<input type="text" name="destinationURL" id="destinationURL" onChange={this.props.handleInput} value={this.props.values.destinationURL} />
+				<input type="text" name="recipientURL" id="recipientURL" onChange={this.props.handleInput} value={this.props.values.recipientURL} />
 				<label>
-					Email
+					Recipient Email
 				</label>
-				<input type="text" name="email" id="email" onChange={this.props.handleInput} value={this.props.values.email} />
+				<input type="text" name="recipientEmail" id="recipientEmail" onChange={this.props.handleInput} value={this.props.values.recipientEmail} />
 				<label>
 					Email Content
 				</label>
@@ -44,7 +55,7 @@ class InputFields extends React.Component {
 class ListOfRefCodes extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {list: [{name: '', url: '', email: ''}]};
+		this.state = {list: [{recipientName: '', recipientURL: '', recipientEmail: ''}]};
 		console.log("in constructor");
 		console.log(this.state);
 		this.setState = this.setState.bind(this);
@@ -57,15 +68,7 @@ class ListOfRefCodes extends React.Component {
 	}
 
 	render() {
-		const listItems = this.state.list.map((listItem) => 
-			<div>	
-				<p><span>Destination Name: </span><span>{listItem.name}</span><span>Email: </span><span>{listItem.email}</span></p>
-				<p><span>Destination URL: </span><span>{listItem.url}</span></p>
-				<p><span>Email Content: </span></p>
-				<p></p>
-			</div>
-			);
-		
+		const listItems = this.state.list.map((listItem) => <RefListing key={listItem.recipientURL} listItem={listItem}/>);
 		return (<div>{listItems}</div>);
 	}
 
@@ -76,9 +79,9 @@ class RefCodes extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = { 
-			email: '',
-			destinationName: '',
-			destinationURL: '',
+			recipientEmail: '',
+			recipientName: '',
+			recipientURL: '',
 			change: ''
 		};
 	}
@@ -97,7 +100,6 @@ class RefCodes extends React.Component {
 			<div>
 				<InputFields handleInput={this.handleInput} values={this.state} />
 				<hr />
-				<input type="text" value={this.state.change} />
 				<ListOfRefCodes />
 			</div>
 		);
