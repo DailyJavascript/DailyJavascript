@@ -8,7 +8,7 @@ layout "ref_codes"
 	end
 
 	def show_all
-		render json: {name:"bootcamp",url:"http://bootcamp",email:"watid2005"}
+		render json: [{name:"bootcamp",url:"http://bootcamp",email:"watid2005"},{name:"college",url:"http://college",email:"farmingdale"}]
 	end
 
 end

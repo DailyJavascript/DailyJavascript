@@ -56,15 +56,16 @@ class ListOfRefCodes extends React.Component {
 		console.log(this.state);
 	}
 
-
 	render() {
 		return (
+			this.state.list.map((listItem) => {
 			<div>	
-				<p><span>Destination Name: </span><span>{this.state.list.name}</span><span>Email: </span><span>{this.state.list.email}</span></p>
-				<p><span>Destination URL: </span><span></span></p>
+				<p><span>Destination Name: </span><span>{listItem.name}</span><span>Email: </span><span>{listItem.email}</span></p>
+				<p><span>Destination URL: </span><span>{listItem.url}</span></p>
 				<p><span>Email Content: </span></p>
 				<p></p>
 			</div>
+			}
 		);
 	}
 
