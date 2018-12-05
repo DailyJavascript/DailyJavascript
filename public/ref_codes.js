@@ -55,7 +55,7 @@ class InputFields extends React.Component {
 class ListOfRefCodes extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {list: [{recipientName: '', recipientURL: '', recipientEmail: ''}]};
+		this.state = {list: []};
 		console.log("in constructor");
 		console.log(this.state);
 		this.setState = this.setState.bind(this);
@@ -69,7 +69,10 @@ class ListOfRefCodes extends React.Component {
 
 	render() {
 		const listItems = this.state.list.map((listItem) => <RefListing key={listItem.recipientURL} listItem={listItem}/>);
-		return (<div>{listItems}</div>);
+		if (!listItems || listItems.length == 0)
+			return (<div>No List Items Yet</div>);
+		else 
+			return (<div>{listItems}</div>);
 	}
 
 
