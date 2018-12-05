@@ -58,7 +58,7 @@ class InputFields extends React.Component {
 				</label>
 				<textarea name="emailContent" id="emailContent" onChange={this.props.handleInput} value={this.props.values.emailContent}>
 				</textarea>
-				<button onClick={() => this.props.handleAdd}>Add</button>
+				<button onClick={this.props.handleAdd}>Add</button>
 			</div>
 			);
 	}
@@ -114,7 +114,7 @@ class RefCodes extends React.Component {
 		if ((this.state.recipientEmail.trim() != "") && (this.state.emailContent.trim() == "")) {
 			cont = confirm("Email is filled out but email content is blank. Are you sure you want to submit as is?");
 		}
-		submitRequest(this.state.recipientName, this.state.recipientURL, this.state.recipientEmail, this.state.emailContent);
+		if (cont) submitRequest(this.state.recipientName, this.state.recipientURL, this.state.recipientEmail, this.state.emailContent);
 	}
 
 
