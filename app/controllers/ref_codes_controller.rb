@@ -7,7 +7,7 @@ layout "ref_codes"
 	def create
 		rc = RefCode.new(recipient_name: params["recipientName"], recipient_url: params["recipientURL"], recipient_email: params["recipientEmail"], email_content: params["emailContent"])
 		rc.ref_code = RefCode.create_new_ref_code
-		rc.ref_code_url = "https://www.dailyjavascript.io/?refCode="+rc.ref_code.to_s
+		rc.ref_code_url = "?refCode="+rc.ref_code.to_s
 		rc.save
 		render plain: "it worked!"
 	end

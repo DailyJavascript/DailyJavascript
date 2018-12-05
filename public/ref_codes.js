@@ -19,7 +19,7 @@ function submitRequest(name, url, email, emailContent, callback) {
 	} // end xhr.onreadystatechange
 	xhr.open("post","/ref_codes",true);
 	xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded")
-	xhr.send("recipientName="+name+"&recipientURL="+url+"&recipientEmail="+email+"&emailContent="+emailContent);
+	xhr.send("recipientName="+name.trim()+"&recipientURL="+url.trim()+"&recipientEmail="+email.trim()+"&emailContent="+emailContent.trim());
 } // end function submitRequest(name,url,email,emailContent)
 
 
