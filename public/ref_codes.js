@@ -15,7 +15,6 @@ function submitRequest(name, url, email, emailContent, callback) {
 	xhr.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
 			callback({recipientName: '', recipientURL: '', recipientEmail: '', emailContent: '', submitted: true});
-			alert(this.responseText);
 		}
 	} // end xhr.onreadystatechange
 	xhr.open("post","/ref_codes",true);
