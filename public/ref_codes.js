@@ -50,7 +50,7 @@ class ListOfRefCodes extends React.Component {
 	}
 
 	componentDidMount() {
-		this.setState({list: getListOfRefCodesFromServer()});
+		this.setState({list: this.getListOfRefCodesFromServer()});
 		console.log("in componentDidMount");
 		console.log(this.state);
 	}
