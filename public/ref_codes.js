@@ -79,7 +79,7 @@ class ListOfRefCodes extends React.Component {
 		var counter = -1;
 		for (var i = 0; i < els.length; i++) { 
 			if (i > this.state.currentIndex) {
-				el.setAttribute("class", "listing-post");
+				els[i].setAttribute("class", "listing-post");
 				counter++;
 			}
 		}
