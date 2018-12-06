@@ -66,24 +66,8 @@ class InputFields extends React.Component {
 
 
 class ListOfRefCodes extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {list: []};
-		this.setState = this.setState.bind(this);
-	}
-
-
-	componentDidMount() {
-		getListOfRefCodesFromServer(this.setState);
-	}
-
-	componentDidUpdate() {
-		console.log("in component did update");
-		if (this.props.newSubmission) getListOfRefCodesFromServer(this.setState);
-	}
-
 	render() { 
-		const listItems = this.state.list.map((listItem, index) => {var a = <RefListing key={listItem.recipientURL} listItem={listItem}/>; var b = (<div><br /><span>****</span></div>); if (index == this.state.list.length-1) return (<div>{a}</div>); else return (<div>{a}{b}</div>);});
+		const listItems = this.props.list.map((listItem, index) => {var a = <RefListing key={listItem.recipientURL} listItem={listItem}/>; var b = (<div><br /><span>****</span></div>); if (index == this.props.list.length-1) return (<div>{a}</div>); else return (<div>{a}{b}</div>);});
 		if (!listItems || listItems.length == 0)
 			return (<div>No List Items Yet</div>);
 		else 
@@ -100,11 +84,15 @@ class RefCodes extends React.Component {
 			recipientURL: '',
 			recipientEmail: '',
 			emailContent: '',
+			list: [],
 			submitted: false
 		};
 		this.setState = this.setState.bind(this);
 	}
 
+	componentDidMount() {
+		getListOfRefCodesFromServer(this.setState);
+	}
 
 	handleInput = (e) => {
 		const {target : {id, value}} = e;
@@ -128,7 +116,7 @@ class RefCodes extends React.Component {
 			<div>
 				<InputFields handleInput={this.handleInput} handleAdd={this.handleAdd} values={this.state} />
 				<hr />
-				<ListOfRefCodes newSubmission={this.state.submitted}/>
+				<ListOfRefCodes list={this.state.list}/>
 			</div>
 		);
 	}
