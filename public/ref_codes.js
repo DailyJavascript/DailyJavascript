@@ -34,7 +34,7 @@ class RefListing extends React.Component {
 	
 	componentDidMount() {
 		ReactDOM.findDOMNode(this).offsetHeight;
-		this.setState({style: {marginLeft: 0, backgroundColor: white} });
+		this.setState({style: {marginLeft: 0, backgroundColor: "white"} });
 	}
 
 	render() {
