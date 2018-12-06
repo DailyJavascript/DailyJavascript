@@ -9,9 +9,9 @@ layout "ref_codes"
 		rc.ref_code = RefCode.create_new_ref_code
 		rc.ref_code_url = "?refCode="+rc.ref_code.to_s
 		rc.save
-		if !params["recipientEmail"].to_s.blank? && params["emailContent"].to_s.blank?
+		if (!params["recipientEmail"].to_s.blank? && params["emailContent"].to_s.blank?)
 			UserMailer.invite_email(params["recipientEmail"].to_s, 0, "", rc.ref_code_url).deliver_now
-		elsif !params["recipientEmail"].to_s.blank? && !params["emailContent"].to_s.blank?
+		elsif (!params["recipientEmail"].to_s.blank? && !params["emailContent"].to_s.blank?)
 			UserMailer.invite_email(params["recipientEmail"].to_s, 1, params["emailContent"].to_s, rc.ref_code_url).deliver_now
 		end
 		render plain: "it worked!"

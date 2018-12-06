@@ -10,16 +10,20 @@
   <body style="margin: 0; padding: 0;">
     <h2 style="width: 100%; background-color: rgb(243, 223, 73); color: black; font-family: Futura, 'Trebuchet MS', Arial, sans-serif; padding: 0.5em 0; margin: 0 0 1em 0; text-align: center;">Daily JavaScript</h2>
     <%= yield %>
-  	<p style="margin: 0; margin: 2em 0 2em 0;"> 
+  	<p style="margin: 2em 0 2em 0;"> 
     </p>
     <hr>
-    <p style="margin: 0; margin: 1em 0 1em 0;"> 
+    <p style="margin: 1em 0 1em 0;"> 
     </p>
-    <p style="margin: 0; margin: 0 0 1em 0; color: gray;">
+
+  <% if (!@user.nil? && @user.present?) %>
+    <p style="margin: 0 0 1em 0; color: gray;">
   		To stop receiving emails and have your free account deleted, click <a href="https://dailyjavascript.herokuapp.com/users/unsubscribe?email=<%= @user.email %>&unsubscribe_code=<%= @user.unsubscribe_code %>">Unsubscribe</a>.
   	</p>
-  	<p style="margin: 0; margin: 0 0 1em 0; color: gray;">
+  	<p style="margin: 0 0 1em 0; color: gray;">
       To end your paid subscription and delete your account, please email us at support@dailyjavascript.io with the subject 'End subscription' and include in the email the email address associated with your account and which monthly membership plan you are currently enrolled in.
     </p>
+  <% end %>
+
   </body>
 </html>
