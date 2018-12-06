@@ -67,8 +67,12 @@ class InputFields extends React.Component {
 
 
 class ListOfRefCodes extends React.Component {
-	render() { 
+	constructor(props) {
+		super(props);
 		const listItems = this.props.list.map((listItem, index) => {var a = <RefListing key={listItem.recipientURL} listItem={listItem}/>; var b = (<div><br /><span>****</span></div>); if (index == this.props.list.length-1) return (<div className="listing-pre">{a}</div>); else return (<div className="listing-pre">{a}{b}</div>);});
+	}
+
+	render() { 		
 		if (!listItems || listItems.length == 0)
 			return (<div>No List Items Yet</div>);
 		else 
