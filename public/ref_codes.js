@@ -65,15 +65,15 @@ class InputFields extends React.Component {
 	}
 } // end class InputFields
 
-
 class ListOfRefCodes extends React.Component {
 	constructor(props) {
 		super(props);
 		var l = this.props.list.map((listItem, index) => {var a = <RefListing key={listItem.recipientURL} listItem={listItem}/>; var b = (<div><br /><span>****</span></div>); if (index == this.props.list.length-1) return (<div className="listing-pre">{a}</div>); else return (<div className="listing-pre">{a}{b}</div>);});
+		console.log(l);
 		this.state = {
 			listItems: l, 
 			currentIndex: -1
-		}
+		};
 	}
 
 	render() { 		
