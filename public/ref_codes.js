@@ -44,7 +44,7 @@ class RefListing extends React.Component {
 				<p><span>Email Content: </span><span>{this.props.listItem.emailContent}</span></p>
 				<p></p></div>);
 		const b = (<div><br /><span>****</span></div>);
-		if (!this.props.lastItem) 
+		if (this.props.lastItem) 
 			return (<div className="listing" style={this.state.style}>{a}</div>);
 		else
 			return (<div className="listing" style={this.state.style}>{a}{b}</div>);	
