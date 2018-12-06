@@ -76,10 +76,11 @@ class ListOfRefCodes extends React.Component {
 	componentDidUpdate() {
 		console.log("updated");
 		var els = document.getElementsByClassName("listing-pre");
+		console.log(els);
 		var counter = -1;
 		for (var i = 0; i < els.length; i++) { 
 			if (i > this.state.currentIndex) {
-				els[i].setAttribute("class", "listing-post");
+				els[i].className = "listing-post";
 				counter++;
 			}
 		}
