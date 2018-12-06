@@ -24,18 +24,32 @@ function submitRequest(name, url, email, emailContent, callback) {
 } // end function submitRequest(name,url,email,emailContent)
 
 
-function RefListing(props) {
-	return 	(
-			<div>	
-				<p><span>Recipient Name: </span><span>{props.listItem.recipientName}</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>Ref Code: </span><span>{props.listItem.refCode}</span></p>
+class RefListing extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			style: {}
+		};
+	}
+	
+	componentDidMount() {
+		this.setState({style: {marginLeft: 0} });
+	}
+
+	render() {
+		const a = (<div><p><span>Recipient Name: </span><span>{props.listItem.recipientName}</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>Ref Code: </span><span>{props.listItem.refCode}</span></p>
 				<p><span>Ref Code URL: </span><span>{props.listItem.refCodeURL}</span></p>
 				<p><span>Recipient URL: </span><span>{props.listItem.recipientURL}</span></p>
 				<p><span>Recipient Email: </span><span>{props.listItem.recipientEmail}</span></p>
 				<p><span>Email Content: </span><span>{props.listItem.emailContent}</span></p>
-				<p></p>
-			</div>
-			);
-} // end function RefListing(props)
+				<p></p></div>);
+		const b = (<div><br /><span>****</span></div>);
+		if (!this.props.lastItem) 
+			return (<div className="listing" style={this.state.style}>{a}</div>);
+		else
+			return (<div className="listing" style={this.state.style}>{a}{b}</div>);	
+	}
+}// end function RefListing(props)
 
 
 class InputFields extends React.Component {
@@ -68,20 +82,10 @@ class InputFields extends React.Component {
 class ListOfRefCodes extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = { 
-			currentIndex: 0,
-			class: "listing",
-			style: {}
-		};
-	}
-
-	componentDidUpdate() {
-		if (this.state.currentIndex == 0) this.setState({currentIndex: 1});
-		else if (this.state.currentIndex == 1) setTimeout(() => {this.setState({style: {marginLeft: 0}, currentIndex: 2});}, 100);
 	}
 
 	render() {
-		const listItems = this.props.list.map((listItem, index) => {var a = <RefListing key={listItem.recipientURL} listItem={listItem}/>; var b = (<div><br /><span>****</span></div>); if (index == this.props.list.length-1) return (<div className={this.state.class} style={this.state.style}>{a}</div>); else return (<div className={this.state.class} style={this.state.style}>{a}{b}</div>);});
+		const listItems = this.props.list.map((listItem, index) => {if (index == this.props.list.length-1) return <RefListing key={listItem.refCode} listItem={listItem} lastItem=true/>; else return <RefListing key={listItem.refCode} listItem={listItem} lastItem=false/>;});
 		if (!listItems || listItems.length == 0)
 			return (<div>No List Items Yet</div>);
 		else 
