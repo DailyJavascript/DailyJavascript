@@ -76,7 +76,8 @@ class ListOfRefCodes extends React.Component {
 	}
 
 	componentDidUpdate() {
-		if (this.state.currentIndex == 0) this.setState({style: {marginLeft: 0}, currentIndex: 1});
+		if (this.state.currentIndex == 0) this.setState({currentIndex: 1});
+		else if (this.state.currentIndex == 1) this.setState({style: {marginLeft: 0}, currentIndex: 2});
 	}
 
 	render() {
