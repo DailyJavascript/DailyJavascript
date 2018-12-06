@@ -69,7 +69,7 @@ class ListOfRefCodes extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = { 
-			currentIndex: -1
+			currentIndex: -1,
 			class: "listing-pre",
 		};
 	}
