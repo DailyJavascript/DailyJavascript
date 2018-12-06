@@ -14,20 +14,11 @@
  *= require_self
  */
 
-.listing-pre {
+.listing {
 	-webkit-transition: margin-left 1s ease-in-out;
 	-moz-transition: margin-left 1s ease-in-out;
 	-o-transition: margin-left 1s ease-in-out;
 	-ms-transition: margin-left 1s ease-in-out;
 	transition: margin-left 1s ease-in-out;
 	margin-left: -200%;
-}
-
-.listing-post {
-	-webkit-transition: margin-left 1s ease-in-out;
-	-moz-transition: margin-left 1s ease-in-out;
-	-o-transition: margin-left 1s ease-in-out;
-	-ms-transition: margin-left 1s ease-in-out;
-	transition: margin-left 1s ease-in-out;
-	margin-left: 0;
 }

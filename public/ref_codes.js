@@ -69,17 +69,18 @@ class ListOfRefCodes extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = { 
-			currentIndex: -1,
-			class: "listing-pre",
+			currentIndex: 0,
+			class: "listing",
+			style: {}
 		};
 	}
 
 	componentDidUpdate() {
-		if (this.state.class == "listing-pre") this.setState({class: "listing-post"});
+		if (this.state.currentIndex == 0) this.setState({style: {marginLeft: 0}, currentIndex: 1});
 	}
 
 	render() {
-		const listItems = this.props.list.map((listItem, index) => {var a = <RefListing key={listItem.recipientURL} listItem={listItem}/>; var b = (<div><br /><span>****</span></div>); if (index == this.props.list.length-1) return (<div className={this.state.class}>{a}</div>); else return (<div className={this.state.class}>{a}{b}</div>);});
+		const listItems = this.props.list.map((listItem, index) => {var a = <RefListing key={listItem.recipientURL} listItem={listItem}/>; var b = (<div><br /><span>****</span></div>); if (index == this.props.list.length-1) return (<div className={this.state.class} style={this.state.style}>{a}</div>); else return (<div className={this.state.class} style={this.state.style}>{a}{b}</div>);});
 		if (!listItems || listItems.length == 0)
 			return (<div>No List Items Yet</div>);
 		else 
