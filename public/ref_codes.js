@@ -75,7 +75,7 @@ class ListOfRefCodes extends React.Component {
 	}
 
 	componentDidUpdate() {
-		this.setState({class: "listing-post"});
+		if (this.state.class == "listing-pre") this.setState({class: "listing-post"});
 	}
 
 	render() {
