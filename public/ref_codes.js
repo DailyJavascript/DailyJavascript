@@ -37,11 +37,11 @@ class RefListing extends React.Component {
 	}
 
 	render() {
-		const a = (<div><p><span>Recipient Name: </span><span>{props.listItem.recipientName}</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>Ref Code: </span><span>{props.listItem.refCode}</span></p>
-				<p><span>Ref Code URL: </span><span>{props.listItem.refCodeURL}</span></p>
-				<p><span>Recipient URL: </span><span>{props.listItem.recipientURL}</span></p>
-				<p><span>Recipient Email: </span><span>{props.listItem.recipientEmail}</span></p>
-				<p><span>Email Content: </span><span>{props.listItem.emailContent}</span></p>
+		const a = (<div><p><span>Recipient Name: </span><span>{this.props.listItem.recipientName}</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>Ref Code: </span><span>{this.props.listItem.refCode}</span></p>
+				<p><span>Ref Code URL: </span><span>{this.props.listItem.refCodeURL}</span></p>
+				<p><span>Recipient URL: </span><span>{this.props.listItem.recipientURL}</span></p>
+				<p><span>Recipient Email: </span><span>{this.props.listItem.recipientEmail}</span></p>
+				<p><span>Email Content: </span><span>{this.props.listItem.emailContent}</span></p>
 				<p></p></div>);
 		const b = (<div><br /><span>****</span></div>);
 		if (!this.props.lastItem) 
