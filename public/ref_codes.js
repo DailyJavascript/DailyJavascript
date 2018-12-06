@@ -78,6 +78,7 @@ class ListOfRefCodes extends React.Component {
 	}
 
 	componentDidUpdate() {
+		console.log("in component did update");
 		if (this.props.newSubmission) getListOfRefCodesFromServer(this.setState);
 	}
 
