@@ -16,7 +16,7 @@ class UserMailer < ApplicationMailer
 	def invite_email(recipient_email, status, email_content, rc_url)
 		@status = status
 		@email_content = email_content
-		@link = "https://www.dailyjavascript.io"+rc_url
+		@link = "https://www.dailyjavascript.io/"+rc_url
 		mail(to: recipient_email, subject: "Improve your programming skills and get prepped for your coding interview - become a member of Daily Javascript")
 	end
 end
