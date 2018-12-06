@@ -68,14 +68,22 @@ class InputFields extends React.Component {
 class ListOfRefCodes extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {
-			listItems: [], 
+		this.state = { 
 			currentIndex: -1
 		};
 	}
 
 	componentDidUpdate() {
 		console.log("updated");
+		var els = document.getElementsByClassName("listing-pre");
+		var counter = -1;
+		for (var i = 0; i < els.length; i++) { 
+			if (i > this.state.currentIndex) {
+				el.setAttribute("class", "listing-post");
+				counter++;
+			}
+		}
+		this.setState({currentIndex: counter});
 	}
 
 	render() {
