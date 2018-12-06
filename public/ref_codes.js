@@ -85,7 +85,7 @@ class ListOfRefCodes extends React.Component {
 	}
 
 	render() {
-		const listItems = this.props.list.map((listItem, index) => {if (index == this.props.list.length-1) return <RefListing key={listItem.refCode} listItem={listItem} lastItem=true/>; else return <RefListing key={listItem.refCode} listItem={listItem} lastItem=false/>;});
+		const listItems = this.props.list.map((listItem, index) => {if (index == this.props.list.length-1) return <RefListing key={listItem.refCode} listItem={listItem} lastItem={true}/>; else return <RefListing key={listItem.refCode} listItem={listItem} lastItem={false}/>;});
 		if (!listItems || listItems.length == 0)
 			return (<div>No List Items Yet</div>);
 		else 
