@@ -69,8 +69,10 @@ class InputFields extends React.Component {
 class ListOfRefCodes extends React.Component {
 	constructor(props) {
 		super(props);
+		var l = this.props.list.map((listItem, index) => {var a = <RefListing key={listItem.recipientURL} listItem={listItem}/>; var b = (<div><br /><span>****</span></div>); if (index == this.props.list.length-1) return (<div className="listing-pre">{a}</div>); else return (<div className="listing-pre">{a}{b}</div>);});
 		this.state = {
-			listItems: this.props.list.map((listItem, index) => {var a = <RefListing key={listItem.recipientURL} listItem={listItem}/>; var b = (<div><br /><span>****</span></div>); if (index == this.props.list.length-1) return (<div className="listing-pre">{a}</div>); else return (<div className="listing-pre">{a}{b}</div>);});
+			listItems: l, 
+			currentIndex = -1
 		}
 	}
 
