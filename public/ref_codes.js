@@ -74,6 +74,10 @@ class ListOfRefCodes extends React.Component {
 		};
 	}
 
+	componentDidUpdate() {
+		console.log("updated");
+	}
+
 	render() {
 		const listItems = this.props.list.map((listItem, index) => {var a = <RefListing key={listItem.recipientURL} listItem={listItem}/>; var b = (<div><br /><span>****</span></div>); if (index == this.props.list.length-1) return (<div className="listing-pre">{a}</div>); else return (<div className="listing-pre">{a}{b}</div>);});
 		if (!listItems || listItems.length == 0)
