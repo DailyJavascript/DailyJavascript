@@ -30,10 +30,12 @@ class RefListing extends React.Component {
 		this.state = {
 			style: {}
 		};
+		this.myRef = React.createRef();
 	}
 	
 	componentDidMount() {
-		ReactDOM.findDOMNode(this).offsetHeight;
+		this.myRef.current.offsetHeight;
+		{/* ReactDOM.findDOMNode(this).offsetHeight; */}
 		this.setState({style: {marginLeft: 0, backgroundColor: "white"} });
 	}
 
@@ -46,9 +48,9 @@ class RefListing extends React.Component {
 				<p></p></div>);
 		const b = (<div><br /><span>****</span></div>);
 		if (this.props.lastItem) 
-			return (<div className="listing" style={this.state.style}>{a}</div>);
+			return (<div ref={this.myRef} className="listing" style={this.state.style}>{a}</div>);
 		else
-			return (<div className="listing" style={this.state.style}>{a}{b}</div>);	
+			return (<div ref={this.myRef} className="listing" style={this.state.style}>{a}{b}</div>);	
 	}
 }// end function RefListing(props)
 
