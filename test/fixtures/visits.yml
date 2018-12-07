@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ref_code: MyString
+  cookie: MyString
+  date_first_visited: 2018-12-06 20:46:50
+  signed_up: false
+  date_signed_up: 2018-12-06 20:46:50
+  signup_level: false
+  ip_address: MyString
+  from_blog: false
+
+two:
+  ref_code: MyString
+  cookie: MyString
+  date_first_visited: 2018-12-06 20:46:50
+  signed_up: false
+  date_signed_up: 2018-12-06 20:46:50
+  signup_level: false
+  ip_address: MyString
+  from_blog: false

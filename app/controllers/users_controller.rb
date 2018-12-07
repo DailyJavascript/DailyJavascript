@@ -63,6 +63,7 @@ class UsersController < ApplicationController
 		@subs = Subscription.all
 	end
 
-
+	def visit
+	end
 
 end
