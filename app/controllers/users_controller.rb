@@ -42,6 +42,11 @@ class UsersController < ApplicationController
 				UserMailer.welcome_email(u.email, u.id).deliver_now
 				output = "good"
 			end
+			v = Visit.find(params["refCodeID"])
+			v.signed_up = true
+			v.date_signed_up = DateTime.now
+			v.signup_level = params[:membership_level].to_s
+			v.save
 		end
 		render plain: output
 	end
@@ -64,6 +69,8 @@ class UsersController < ApplicationController
 	end
 
 	def visit
+		v = Visit.create(ref_code: params["refCode"], date_first_visited: DateTime.now)
+		render plain: v.id
 	end
 
 end
