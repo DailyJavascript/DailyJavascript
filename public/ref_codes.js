@@ -109,10 +109,16 @@ class RefCodes extends React.Component {
 			submitted: false
 		};
 		this.setState = this.setState.bind(this);
+		this.intervalID = null;
 	}
 
 	componentDidMount() {
 		getListOfRefCodesFromServer(this.setState);
+		this.intervalID = setInterval(() => getListOfRefCodesFromServer(this.setState), 1500);
+	}
+
+	componentWillUnmount() {
+		clearInterval(this.intervalID);
 	}
 
 	handleInput = (e) => {
