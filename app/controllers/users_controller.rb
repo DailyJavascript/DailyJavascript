@@ -42,11 +42,13 @@ class UsersController < ApplicationController
 				UserMailer.welcome_email(u.email, u.id).deliver_now
 				output = "good"
 			end
-			v = Visit.find(params["visitID"])
-			v.signed_up = true
-			v.date_signed_up = DateTime.now
-			v.signup_level = params[:membership_level].to_s
-			v.save
+			if (!params["visitID"].nil?)
+				v = Visit.find(params["visitID"])
+				v.signed_up = true
+				v.date_signed_up = DateTime.now
+				v.signup_level = params[:membership_level].to_s
+				v.save
+			end
 		end
 		render plain: output
 	end
