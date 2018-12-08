@@ -1,6 +1,6 @@
-<% if !@subs.empty? %>
+<% if !@users.empty? %>
 
-<p>Total Paid Subscriptions: <%= @subs.count %></p>
+<p>Total Users: <%= @users.count %></p>
 
 <table>
 	<thead>
@@ -12,11 +12,11 @@
 	</thead>
 
 	<tbody>
-		<% @subs.each do |sub| %>
+		<% @users.each do |user| %>
 		<tr>
-			<td style="padding:10px 20px"><%= sub.user.email %></td>
-			<td style="padding:10px 20px"><%= sub.plan %></td>
-			<td style="padding:10px 20px"><%= sub.created_at %></td>
+			<td style="padding:10px 20px"><%= user.email %></td>
+			<td style="padding:10px 20px"><%= user.membership_level %></td>
+			<td style="padding:10px 20px"><%= user.created_at %></td>
 		</tr>
 		<% end %>
 	</tbody>
@@ -24,6 +24,6 @@
 
 <% else %>
 
-<p>No subscriptions yet</p>
+<p>No users yet</p>
 
 <% end %>

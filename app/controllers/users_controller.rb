@@ -69,7 +69,7 @@ class UsersController < ApplicationController
 	end
 
 	def show_subscriptions
-		@subs = Subscription.all
+		@users = User.all
 	end
 
 	def visit
