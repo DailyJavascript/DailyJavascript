@@ -3,6 +3,7 @@ class CreateVisits < ActiveRecord::Migration[5.1]
     create_table :visits do |t|
       t.string :ref_code
       t.string :cookie
+      t.integer :user_id
       t.datetime :date_first_visited
       t.boolean :signed_up
       t.datetime :date_signed_up

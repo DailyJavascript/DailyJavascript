@@ -46,7 +46,8 @@ class UsersController < ApplicationController
 				v = Visit.find(params["visitID"])
 				v.signed_up = true
 				v.date_signed_up = DateTime.now
-				v.signup_level = params[:membership_level]
+				v.signup_level = u.plan
+				v.user_id = u.id
 				v.save
 			end
 		end
@@ -72,8 +73,8 @@ class UsersController < ApplicationController
 
 	def visit
 		rc = nil
-		if (!params["refCode"].nil?)
-			rc = params["refCode"]
+		if (!params["refcode"].nil?)
+			rc = params["refcode"]
 		end
 		v = Visit.create(ref_code: rc, date_first_visited: DateTime.now)
 		render plain: v.id
