@@ -46,7 +46,9 @@ class UsersController < ApplicationController
 				v = Visit.find(params["visitID"])
 				v.signed_up = true
 				v.date_signed_up = DateTime.now
-				v.user_id = u.id
+				if (u.present?)
+					v.user_id = u.id
+				end
 				v.save
 			end
 		end
