@@ -69,7 +69,11 @@ class UsersController < ApplicationController
 	end
 
 	def visit
-		v = Visit.create(ref_code: params["refCode"], date_first_visited: DateTime.now)
+		rc = nil
+		if (!params["refCode"].nil?)
+			rc = params["refCode"]
+		end
+		v = Visit.create(ref_code: rc, date_first_visited: DateTime.now)
 		render plain: v.id
 	end
 
