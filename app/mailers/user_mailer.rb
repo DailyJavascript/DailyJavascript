@@ -1,5 +1,5 @@
 class UserMailer < ApplicationMailer
-	default from: 'Daily JavaScript'
+	default from: 'dailyjavascript@sendgrid.net'
 
 	def welcome_email(user_email_address, user_id)
 		@user = User.find(user_id)
