@@ -2,7 +2,7 @@ class UserMailer < ApplicationMailer
 	default from: 'Daily JavaScript <support@dailyjavascript.io>'
 
 	def welcome_email(user_email_address, user_id)
-		attachments.inline["launch.svg"] = File.read("https://dailyjavascript.herokuapp.com/launch.svg")
+		attachments.inline["launch.svg"] = File.read("#{Rails.root}/app/assets/images/launch.svg")
 		@user = User.find(user_id)
 		mail(to: user_email_address, subject: 'Welcome to Daily Javascript')
 	end
