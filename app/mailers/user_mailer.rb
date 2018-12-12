@@ -10,7 +10,7 @@ class UserMailer < ApplicationMailer
 	def next_challenge_email(challenge_id, user_email_address, user_id)
 		@user = User.find(user_id)
 		@next_challenge = Challenge.find(challenge_id)
-		mail(from: 'Daily JavaScript challenge <challenges@dailyjavascript.io>', to: user_email_address, subject: "Today's Daily Javascript email")
+		mail(from: 'Daily JavaScript <challenges@dailyjavascript.io>', to: user_email_address, subject: "Today's Daily Javascript email")
 	end
 
 	def invite_email(recipient_email, status, email_content, rc_url)
