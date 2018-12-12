@@ -6,7 +6,6 @@
 		<table>
 			<thead>
 			<tr>
-				<!-- <th style="padding:10px 20px">Email</th> -->
 				<th style="padding:10px 20px">Visit ID</th>
 				<th style="padding:10px 20px">Date First Visited</th>
 				<th style="padding:10px 20px">Signed Up, Yes or No</th>
@@ -20,7 +19,6 @@
 			<tbody>
 			<% @visits.each do |visit| %>
 			<tr style="border-bottom: 1px solid gray;">
-				<!-- <td style="padding:10px 20px"><%= user.email %></td> -->
 				<td style="padding:10px 20px"><%= visit.id %></td>
 				<td style="padding:10px 20px"><%= visit.created_at %></td>
 				<% if visit.signed_up.nil? || visit.signed_up == false %>
