@@ -17,7 +17,7 @@
 			</thead>
 
 			<tbody>
-			<% @visits.each do |visit| %>
+			<% Visit.order(:id).each do |visit| %>
 			<tr style="border-bottom: 1px solid gray;">
 				<td style="padding:10px 20px"><%= visit.id %></td>
 				<td style="padding:10px 20px"><%= visit.created_at %></td>
