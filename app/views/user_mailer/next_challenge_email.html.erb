@@ -1,25 +1,22 @@
-<h2>Are you ready for the coding challenge today?</h2>
+<h2 style="margin: 0 0 1em 0;">
+Hello Daily JavaScripter,
+</h2>
 
-<p style="margin: 0 0 1em 0;">
-	Hi Daily JavaScripter,
-</p>
-<p>Hope you're having a wonderful day!</p>
-<p>&nbsp;</p>
-<div style="display:flex;">
-	<% if @next_challenge.id % 2 != 0 %>
-		<img src="https://dailyjavascript.herokuapp.com/programming.png" style="max-height: 144px; max-width: 210px; margin-bottom: 1rem;">
+<div style="display:flex; margin-bottom: 0.65rem;">
+	<% if 1 % 2 != 0 %>
+		<img src="https://dailyjavascript.herokuapp.com/programming.png" style="max-height: 144px; max-width: 240px; margin-bottom: 1rem;">
 	<% else %>
 		<img src="https://dailyjavascript.herokuapp.com/version_control.png" style="max-height: 144px; max-width: 210px; margin-bottom: 1rem;">
 	<% end %>
 </div>
-<p>&nbsp;</p>
+<h3>Are you ready for the coding challenge today?</h3>
+
 <% challenge_lines = @next_challenge.challenge.lines.map(&:chomp) %>
 <% challenge_lines.each do |line| %>
 <p style="margin: 0 0 1em 0;">
 	<%= line %>
 </p>
 <% end %>
-<p>&nbsp;</p>
 <p>Good luck!</p>
 <p>&nbsp;</p>
 <% if !@user.membership_level.nil? && @user.membership_level == "free" %>
