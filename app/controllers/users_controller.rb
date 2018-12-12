@@ -71,6 +71,7 @@ class UsersController < ApplicationController
 	def show_subscriptions
 		@users = User.all
 		@visits = Visit.all
+		@ref_codes = RefCode.all
 	end
 
 	def visit
@@ -78,7 +79,7 @@ class UsersController < ApplicationController
 		if (!params["refcode"].nil?)
 			rc = params["refcode"]
 		end
-		v = Visit.create(ref_code: rc, date_first_visited: DateTime.now)
+		v = Visit.create(ref_code: rc, date_first_visited: DateTime.now, signed_up: false)
 		render plain: v.id
 	end
 
