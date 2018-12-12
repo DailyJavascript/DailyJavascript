@@ -1,9 +1,3 @@
-<style>
-	.img_welcome_email {
-		height: 10rem;
-		margin-bottom: 1rem;
-	}
-</style>
 <h2>Are you ready for the coding challenge today?</h2>
 
 <p style="margin: 0 0 1em 0;">
@@ -12,9 +6,9 @@
 <p>Hope you're having a wonderful day!</p>
 <div style="display:flex;">
 	<% if @next_challenge.id % 2 != 0 %>
-		<img src="/programming.svg" class="img_welcome_email"></img>
+		<img src="https://dailyjavascript.herokuapp.com/programming.png" style="height: 10rem;margin-bottom: 1rem;">
 	<% else %>
-		<img src="/version_control.svg" class="img_welcome_email"></img>
+		<img src="https://dailyjavascript.herokuapp.com/version_control.png" style="height: 10rem;margin-bottom: 1rem;">
 	<% end %>
 </div>
 <% challenge_lines = @next_challenge.challenge.lines.map(&:chomp) %>
