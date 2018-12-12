@@ -69,9 +69,9 @@ class UsersController < ApplicationController
 	end
 
 	def show_subscriptions
-		@users = User.all
-		@visits = Visit.all
-		@ref_codes = RefCode.all
+		@users = User.order(:id)
+		@visits = Visit.order(:id)
+		@ref_codes = RefCode.order(:id)
 	end
 
 	def visit
