@@ -16,8 +16,8 @@
 			<% @ref_codes.each do |ref_code| %>
 			<tr style="border-bottom: 1px solid gray;">				
 				<td style="padding:10px 20px"><%= ref_code.ref_code %></td>
-				<td style="padding:10px 20px"><%= rc.recipient_name %></td>
-				<td style="padding:10px 20px"><%= rc.recipient_url %></td>
+				<td style="padding:10px 20px"><%= ref_code.recipient_name %></td>
+				<td style="padding:10px 20px"><%= ref_code.recipient_url %></td>
 				<td style="padding:10px 20px"><% Visit.where({ref_code: ref_code.ref_code}).count %></td>
 			</tr>
 			<% end %>
