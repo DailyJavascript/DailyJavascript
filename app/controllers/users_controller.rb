@@ -64,7 +64,7 @@ class UsersController < ApplicationController
 				user_challenges.delete_all
 			end
 			Unsubscribed.create(email: user.email, email_verified: user.email_verified, email_verification_code: user.email_verification_code, unsubscribe_code: user.unsubscribe_code, date_joined: user.date_joined, membership_level: user.membership_level, date_current_membership_level: user.date_current_membership_level, membership_level_history: user.membership_level_history, active: user.active) 
-			user.delete
+			user.delete 
 			@unsubscribe_result = 1
 		end
 	end
