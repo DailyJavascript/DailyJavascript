@@ -63,7 +63,7 @@ class UsersController < ApplicationController
 			if user_challenges.present?
 				user_challenges.delete_all
 			end
-			Unsubscribed.create(user.attributes.except(:id))
+			Unsubscribed.create(user.attributes.except(:id)) 
 			user.delete
 			@unsubscribe_result = 1
 		end
