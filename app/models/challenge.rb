@@ -7,7 +7,7 @@ class Challenge < ApplicationRecord
 		users = User.all
 		if users.present? 
 			users.each do |user|
-				user_challenges = UserChallenge.where(:user_id => user.id)
+				user_challenges = UserChallenge.where(user_id: user.id)
 				if user_challenges.present? 
 					last_challenge = user_challenges.order(:challenge_id).last
 					next_challenge_id = last_challenge.challenge_id.to_i + 1

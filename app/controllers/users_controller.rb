@@ -73,16 +73,23 @@ class UsersController < ApplicationController
 
 	def show_subscriptions
 		@users = User.order(:id)
-		@visits = Visit.order(:id)
+		@landing_page_visits = Visit.where("from_blog = false").order(:id)
+		@blog_visits = Visit.where("from_blog = true").order(:id)
 		@ref_codes = RefCode.order(:id)
 	end
 
 	def visit
 		rc = nil
+		bv = false
 		if (!params["refcode"].nil?)
 			rc = params["refcode"]
 		end
-		v = Visit.create(ref_code: rc, date_first_visited: DateTime.now, signed_up: false)
+		if (!params["blogVisit"].nil?)
+			if (params["blogVisit"] == "1")
+				bv = true
+			end
+		end
+		v = Visit.create(ref_code: rc, date_first_visited: DateTime.now, signed_up: false, from_blog: bv)
 		render plain: v.id
 	end
 
