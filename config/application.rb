@@ -18,7 +18,7 @@ module Dailyjavascript
 
     config.middleware.insert_before ActionDispatch::Static, Rack::Cors do
     	allow do
-    		origins 'https://www.dailyjavascript.io', 'http://www.dailyjavascript.io', 'http://dailyjavascript.io'
+    		origins 'https://www.dailyjavascript.io', 'http://www.dailyjavascript.io', 'http://dailyjavascript.io', 'https://dailyjavascriptblog.netlify.com/'
     		resource '*', headers: :any, methods: [:get, :post, :options, :put, :patch, :delete]
     	end
     end
