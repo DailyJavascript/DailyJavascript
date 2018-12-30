@@ -1,6 +1,5 @@
 class Challenge < ApplicationRecord
 	has_many :users
-	#has_one :test
 
 
 	def self.mail_next_challenge

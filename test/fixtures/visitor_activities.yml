@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  did_scroll: false
+  section_ids: MyString
+  did_click_payment: false
+  did_click_input: false
+  did_input_email: false
+  email_input_value: MyString
+  plan: MyString
+
+two:
+  did_scroll: false
+  section_ids: MyString
+  did_click_payment: false
+  did_click_input: false
+  did_input_email: false
+  email_input_value: MyString
+  plan: MyString
