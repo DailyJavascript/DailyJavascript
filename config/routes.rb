@@ -6,11 +6,12 @@ Rails.application.routes.draw do
   get '/private/challenges', to: "challenges#new"
   get '/users/unsubscribe', to: "users#unsubscribe"
   get '/ref_codes/all', to: "ref_codes#show_all"
+  post '/visits', to: "visits#create"
+  post '/visits/update', to: "visits#update"
 
   resources :users
   resources :challenges
   resources :payments
   resources :ref_codes
-  resources :visits, only: [:create, :update]
   
 end

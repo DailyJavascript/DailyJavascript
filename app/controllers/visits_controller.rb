@@ -47,6 +47,12 @@ class VisitsController < ApplicationController
 			else
 				value = va.email_input_value + "," + params["value"]
 			end
+		elsif (field == "plan")
+			if (va.plan == "")
+				value = params["value"]
+			else
+				value = va.plan + "," + params["value"]
+			end
 		else
 			value = params["value"]
 		end
