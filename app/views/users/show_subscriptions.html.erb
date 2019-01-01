@@ -81,10 +81,10 @@
 				<% end %>
 			</tr>
 			<% va = VisitorActivity.find_by(visit_id: visit.id) %>
-			<tr style="border-bottom: 1px solid gray;">
+			<tr style="border-bottom: 1px solid gray; border-bottom: 1px solid gray;">
 				<td style="padding:10px 20px; overflow-y: auto;">Section IDs: <%= va.section_ids %></td>
 				<td style="padding:10px 20px">Did click input: <%= va.did_click_input %></td>
-				<td style="padding:10px 20px; overflow-y: auto;">Email input value: <%= va.email_input_value %></td>
+				<td style="padding:10px 20px; overflow-y: auto;">Email input value: ******</td>
 				<td style="padding:10px 20px">Did click payment: <%= va.did_click_payment %></td>
 				<td style="padding:10px 20px">Plan: <%= va.plan %></td>
 			</tr>
