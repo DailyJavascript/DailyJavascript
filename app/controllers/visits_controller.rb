@@ -40,7 +40,7 @@ class VisitsController < ApplicationController
 			value = true
 		elsif (field == "section_ids")
 			arr = va.section_ids.split(",")
-			value = arr.to_set.add(value).to_a.sort.join(",")
+			value = arr.to_set.add(params["value"]).to_a.sort.join(",")
 		elsif (field == "email_input_value")
 			if (va.email_input_value == "")
 				value = params["value"]
