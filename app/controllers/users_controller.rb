@@ -14,43 +14,67 @@ class UsersController < ApplicationController
 
 	def create
 		t = DateTime.now
-		u = User.new(email: params[:email], email_verified: false, email_verification_code: nil, unsubscribe_code: nil, date_joined: t, membership_level: params[:membership_level], date_current_membership_level: t, membership_level_history: nil)
-		mc = params[:membership_code].to_s
-		subscription_result = nil
-		output = "bad"
-		if u.save
-			result = 1
-			u.reload
-			u.email_verification_code = User.createEmailVerificationCode
-			u.unsubscribe_code = User.createUnsubscribeCode
-			membership_level_history = {}
-			membership_level_history["level"] = params[:membership_level].to_s
-			membership_level_history["date"] = t
-			u.membership_level_history = JSON.generate(membership_level_history)
-			if mc == "2"
-				subscription_result = Subscription.subscription_enroll(params[:stripe_token_id], params[:email], params[:membership_level])
-				if subscription_result[0] == 1
-					u.create_subscription(subscription_id: subscription_result[1], status: "active", plan: params[:membership_level], date_last_charged: DateTime.now, payment_provider: "stripe", payment_provider_user_id: subscription_result[2])
+		if (!User.find_by(email: params[:email]).nil?)
+			modify_membership
+		else
+			u = User.new(email: params[:email], email_verified: false, email_verification_code: nil, unsubscribe_code: nil, date_joined: t, membership_level: params[:membership_level], date_current_membership_level: t, membership_level_history: nil)
+			mc = params[:membership_code].to_s
+			output = "bad"
+			if u.save
+				result = 1
+				u.reload
+				u.email_verification_code = User.createEmailVerificationCode
+				u.unsubscribe_code = User.createUnsubscribeCode
+				membership_level_history = {}
+				membership_level_history["level"] = params[:membership_level].to_s
+				membership_level_history["date"] = t
+				u.membership_level_history = JSON.generate(membership_level_history)
+				if mc == "2"
+					result = Subscription.subscribe(u, params[:stripe_token_id], params[:email], params[:membership_level])
+				end
+				if (mc == "2" && result == 2)
+					u.delete
 				else
-					result = 2
+					u.save
+					UserMailer.welcome_email(u.email, u.id).deliver_now
+					output = "good"
+				end
+				if (!params["visitID"].nil?)
+					v = Visit.find(params["visitID"])
+					v.signed_up = true
+					v.date_signed_up = DateTime.now
+					if (u.present?)
+						v.user_id = u.id
+					end
+					v.save
 				end
 			end
-			if (mc == "2" && result == 2)
-				u.delete
-			else
-				u.save
-				UserMailer.welcome_email(u.email, u.id).deliver_now
-				output = "good"
-			end
-			if (!params["visitID"].nil?)
-				v = Visit.find(params["visitID"])
-				v.signed_up = true
-				v.date_signed_up = DateTime.now
-				if (u.present?)
-					v.user_id = u.id
-				end
-				v.save
-			end
+			render plain: output
+		end
+	end
+
+	def modify_membership
+		u = User.find_by(email: params[:email])
+		result = 1
+		output = "good"
+		if ((u.membership_level == "free") && (params[:membership_level] != "free"))
+			result = Subscription.subscribe(u, params[:stripe_token_id], params[:email], params[:membership_level])
+		elsif ((u.membership_level != "free") && (params[:membership_level] == "free"))
+			Subscription.cancel_subscription(u.subscription.subscription_id)
+			u.subscription.delete
+		elsif ((u.membership_level == "eight_dollars") && (params[:membership_level] == "ten_dollars"))
+			Subscription.cancel_subscription(u.subscription.subscription_id)
+			u.subscription.delete
+			result = Subscription.subscribe(u, params[:stripe_token_id], params[:email], params[:membership_level])
+		elsif ((u.membership_level == "ten_dollars") && (params[:membership_level] == "eight_dollars"))
+			Subscription.cancel_subscription(u.subscription.subscription_id)
+			u.subscription.delete
+			result = Subscription.subscribe(u, params[:stripe_token_id], params[:email], params[:membership_level])
+		end
+		u.membership_level = params[:membership_level]
+		u.save
+		if (result == 2)
+			output = "bad"
 		end
 		render plain: output
 	end
@@ -69,28 +93,11 @@ class UsersController < ApplicationController
 		end
 	end
 
-#email: user.email, email_verified: user.email_verified, email_verification_code: user.email_verification_code, unsubscribe_code: user.unsubscribe_code, date_joined: user.date_joined, membership_level: user.membership_level, date_current_membership_level: user.date_current_membership_level, membership_level_history: user.membership_level_history, active: user.active
-
 	def show_subscriptions
 		@users = User.order(:id)
 		@landing_page_visits = Visit.where("from_blog = false").order(:id)
 		@blog_visits = Visit.where("from_blog = true").order(:id)
 		@ref_codes = RefCode.order(:id)
-	end
-
-	def visit
-		rc = nil
-		bv = false
-		if (!params["refcode"].nil?)
-			rc = params["refcode"]
-		end
-		if (!params["blogVisit"].nil?)
-			if (params["blogVisit"] == "1")
-				bv = true
-			end
-		end
-		v = Visit.create(ref_code: rc, date_first_visited: DateTime.now, signed_up: false, from_blog: bv)
-		render plain: v.id
 	end
 
 end

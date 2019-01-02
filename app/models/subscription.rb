@@ -87,6 +87,18 @@ class Subscription < ApplicationRecord
     return result
   end
 
+  def self.subscribe(u, stripe_token_id, email, membership_level)
+    result = 1
+    subscription_result = nil
+    subscription_result = Subscription.subscription_enroll(stripe_token_id, email, membership_level)
+    if subscription_result[0] == 1
+      u.create_subscription(subscription_id: subscription_result[1], status: "active", plan: membership_level, date_last_charged: DateTime.now, payment_provider: "stripe", payment_provider_user_id: subscription_result[2])
+    else
+      result = 2
+    end
+    return result
+  end
+
   def self.cancel_subscription(subscription_id)
     subs = Stripe::Subscription.retrieve(subscription_id)
     subs.delete
