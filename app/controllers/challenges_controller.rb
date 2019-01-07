@@ -3,6 +3,11 @@ class ChallengesController < ApplicationController
 	def new
 	end
 
+	def show
+		@challenge = Challenge.find(params[:id])
+		render json: @challenge
+	end
+
 	def create
 		puts params[:challenge]
 		puts params[:code]
@@ -10,7 +15,7 @@ class ChallengesController < ApplicationController
 		if (Challenge.count > 0)
 			current_id = Challenge.order(:id).last.id.to_i + 1
 			c.id = current_id
-		end		
+		end
 		if c.save
 			if params[:code].to_i == 1
 				Challenge.mail_next_challenge
