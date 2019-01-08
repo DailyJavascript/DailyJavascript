@@ -30,6 +30,8 @@ class VisitsController < ApplicationController
 			field = "did_click_input"
 		elsif (params["field"] == "emailInputValue") 
 			field = "email_input_value"
+		elsif (params["field"] == "didClickTestPage") 
+			field = "did_click_test_page"
 		elsif (params["field"] == "plan") 
 			field = "plan"
 		end
