@@ -13,7 +13,7 @@ class VisitsController < ApplicationController
 			end
 		end
 		v = Visit.create(ref_code: rc, date_first_visited: DateTime.now, signed_up: false, from_blog: bv)
-		v.create_visitor_activity(section_ids: "", did_click_input: false, email_input_value: "", did_click_payment: false, did_click_test_page: false, plan: "")
+		v.create_visitor_activity(section_ids: "", did_click_input: false, email_input_value: "", did_click_payment: false, did_click_test_page: false, did_click_upgrade_link: false, plan: "")
 		render plain: v.id
 	end
 
@@ -32,6 +32,8 @@ class VisitsController < ApplicationController
 			field = "email_input_value"
 		elsif (params["field"] == "didClickTestPage") 
 			field = "did_click_test_page"
+		elsif (params["field"] == "didClickUpgradeLink") 
+			field = "did_click_upgrade_link"
 		elsif (params["field"] == "plan") 
 			field = "plan"
 		end
