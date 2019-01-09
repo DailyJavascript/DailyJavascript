@@ -9,7 +9,7 @@ class GetSeeds < ApplicationRecord
 
 	def self.get_challenges
 		Challenge.order(:id).each do |x|
-			puts "Challenge.create(challenge:"+x.challenge.inspect+")"
+			puts "Challenge.create(challenge:"+x.challenge.inspect+", challenge_no:"+x.challenge_no.inspect+", level:"+x.level.inspect+", test_assertions:"+x.test_assertions.inspect+", test_url:"+x.test_url.inspect+", video_explanation_url:"+x.video_explanation_url.inspect+", is_challenge:"+x.is_challenge.inspect+")"
 		end
 	end
 

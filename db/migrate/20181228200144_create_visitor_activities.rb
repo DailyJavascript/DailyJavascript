@@ -6,6 +6,7 @@ class CreateVisitorActivities < ActiveRecord::Migration[5.1]
       t.boolean :did_click_input
       t.text :email_input_value
       t.boolean :did_click_payment
+      t.boolean :did_click_test_page
       t.string :plan
 
       t.timestamps

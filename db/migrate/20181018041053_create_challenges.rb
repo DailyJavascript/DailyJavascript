@@ -7,7 +7,8 @@ class CreateChallenges < ActiveRecord::Migration[5.1]
       t.text :test_assertions
       t.string :test_url
       t.string :video_explanation_url
-
+      t.boolean :is_challenge
+      
       t.timestamps
     end
   end
