@@ -62,11 +62,11 @@ class UsersController < ApplicationController
 		elsif ((u.membership_level != "free") && (params[:membership_level] == "free"))
 			Subscription.cancel_subscription(u.subscription.subscription_id)
 			u.subscription.delete
-		elsif ((u.membership_level == "eight_dollars") && (params[:membership_level] == "ten_dollars"))
+		elsif ((u.membership_level == "standard") && (params[:membership_level] == "premium"))
 			Subscription.cancel_subscription(u.subscription.subscription_id)
 			u.subscription.delete
 			result = Subscription.subscribe(u, params[:stripe_token_id], params[:email], params[:membership_level])
-		elsif ((u.membership_level == "ten_dollars") && (params[:membership_level] == "eight_dollars"))
+		elsif ((u.membership_level == "premium") && (params[:membership_level] == "standard"))
 			Subscription.cancel_subscription(u.subscription.subscription_id)
 			u.subscription.delete
 			result = Subscription.subscribe(u, params[:stripe_token_id], params[:email], params[:membership_level])
