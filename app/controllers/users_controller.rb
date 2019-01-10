@@ -17,39 +17,44 @@ class UsersController < ApplicationController
 		if (!User.find_by(email: params[:email]).nil?)
 			modify_membership
 		else
-			u = User.new(email: params[:email], email_verified: false, email_verification_code: nil, unsubscribe_code: nil, date_joined: t, membership_level: params[:membership_level], date_current_membership_level: t, membership_level_history: nil)
-			mc = params[:membership_code].to_s
-			output = "bad"
-			if u.save
-				result = 1
-				u.reload
-				u.email_verification_code = User.createEmailVerificationCode
-				u.unsubscribe_code = User.createUnsubscribeCode
-				membership_level_history = {}
-				membership_level_history["level"] = params[:membership_level].to_s
-				membership_level_history["date"] = t
-				u.membership_level_history = JSON.generate(membership_level_history)
-				if mc == "2"
-					result = Subscription.subscribe(u, params[:stripe_token_id], params[:email], params[:membership_level])
-				end
-				if (mc == "2" && result == 2)
-					u.delete
-				else
-					u.save
-					UserMailer.welcome_email(u.email, u.id).deliver_now
-					output = "good"
-				end
-				if (!params["visitID"].nil?)
-					v = Visit.find(params["visitID"])
-					v.signed_up = true
-					v.date_signed_up = DateTime.now
-					if (u.present?)
-						v.user_id = u.id
+			emailValid = User.validate_email(params["email"])
+			if (emailValid)
+				u = User.new(email: params[:email], email_verified: false, email_verification_code: nil, unsubscribe_code: nil, date_joined: t, membership_level: params[:membership_level], date_current_membership_level: t, membership_level_history: nil)
+				mc = params[:membership_code].to_s
+				output = "bad"
+				if u.save
+					result = 1
+					u.reload
+					u.email_verification_code = User.createEmailVerificationCode
+					u.unsubscribe_code = User.createUnsubscribeCode
+					membership_level_history = {}
+					membership_level_history["level"] = params[:membership_level].to_s
+					membership_level_history["date"] = t
+					u.membership_level_history = JSON.generate(membership_level_history)
+					if mc == "2"
+						result = Subscription.subscribe(u, params[:stripe_token_id], params[:email], params[:membership_level])
 					end
-					v.save
+					if (mc == "2" && result == 2)
+						u.delete
+					else
+						u.save
+						UserMailer.welcome_email(u.email, u.id).deliver_now
+						output = "good"
+					end
+					if (!params["visitID"].nil?)
+						v = Visit.find(params["visitID"])
+						v.signed_up = true
+						v.date_signed_up = DateTime.now
+						if (u.present?)
+							v.user_id = u.id
+						end
+						v.save
+					end
 				end
+				render plain: output
+			else
+				render plain: "good"
 			end
-			render plain: output
 		end
 	end
 

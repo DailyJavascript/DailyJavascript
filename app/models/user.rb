@@ -1,5 +1,7 @@
 class User < ApplicationRecord
 require 'securerandom'
+require 'mail'
+
 
 has_many :challenges
 has_one :subscription
@@ -26,5 +28,16 @@ def self.createUnsubscribeCode
 	end
 	return code
 end
+
+def self.validate_email(email)
+	valid = true
+	a = Mail::Address.new(email)
+	rescue Mail::Field::ParseError
+		return false
+	else
+		return true
+end
+
+
 
 end
