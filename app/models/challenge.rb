@@ -3,7 +3,7 @@ class Challenge < ApplicationRecord
 
 
 	def self.mail_next_challenge
-		users = User.all
+		users = User.where("id > 52")
 		if users.present? 
 			users.each do |user|
 				user_challenges = UserChallenge.where(user_id: user.id)
