@@ -1,6 +1,7 @@
 class CreateUnsubscribeds < ActiveRecord::Migration[5.1]
   def change
     create_table :unsubscribeds do |t|
+      t.bigint :user_id
       t.string :email
       t.boolean :email_verified
       t.string :email_verification_code

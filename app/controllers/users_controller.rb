@@ -92,7 +92,9 @@ class UsersController < ApplicationController
 			#if user_challenges.present?
 			#	user_challenges.delete_all
 			#end
-			Unsubscribed.create(user.attributes.except("id","created_at","updated_at")) 
+			a = Unsubscribed.new(user.attributes.except("id","created_at","updated_at")) 
+			a.user_id = user.id
+			a.save
 			user.delete 
 			@unsubscribe_result = 1
 		end
