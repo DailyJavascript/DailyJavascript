@@ -88,10 +88,10 @@ class UsersController < ApplicationController
 		@unsubscribe_result = 0
 		user = User.find_by(email: params[:email].to_s, unsubscribe_code: params[:unsubscribe_code].to_s)
 		if (user.present? && (user.membership_level.to_s == "free"))
-			user_challenges = UserChallenge.where(user_id: user.id)
-			if user_challenges.present?
-				user_challenges.delete_all
-			end
+			#user_challenges = UserChallenge.where(user_id: user.id)
+			#if user_challenges.present?
+			#	user_challenges.delete_all
+			#end
 			Unsubscribed.create(user.attributes.except("id","created_at","updated_at")) 
 			user.delete 
 			@unsubscribe_result = 1
