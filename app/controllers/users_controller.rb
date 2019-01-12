@@ -19,7 +19,8 @@ class UsersController < ApplicationController
 		else
 			emailValid = User.validate_email(params["email"])
 			if (emailValid)
-				u = User.new(email: params[:email], email_verified: false, email_verification_code: nil, unsubscribe_code: nil, date_joined: t, membership_level: params[:membership_level], date_current_membership_level: t, membership_level_history: nil)
+				em = User.get_email_address_only(params[:email])
+				u = User.new(email: em, email_verified: false, email_verification_code: nil, unsubscribe_code: nil, date_joined: t, membership_level: params[:membership_level], date_current_membership_level: t, membership_level_history: nil)
 				mc = params[:membership_code].to_s
 				output = "bad"
 				if u.save

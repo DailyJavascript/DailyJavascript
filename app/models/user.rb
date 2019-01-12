@@ -30,12 +30,22 @@ def self.createUnsubscribeCode
 end
 
 def self.validate_email(email)
-	valid = true
-	a = Mail::Address.new(email)
+	begin
+		a = Mail::Address.new(email)
 	rescue Mail::Field::ParseError
+		puts
+		puts "bad email"
+		puts
 		return false
 	else
 		return true
+	end
+
+def self.get_email_address_only(email)
+	a = Mail::Address.new(email)
+	return a.address
+end
+
 end
 
 
