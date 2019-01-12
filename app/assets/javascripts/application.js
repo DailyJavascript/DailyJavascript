@@ -35,6 +35,7 @@ function submitChallenge(code) {
 
 function disableAssertions() {
   var checkBox = document.getElementById("notChallengeCheckBox");
+  var testFunction = document.getElementById("testFunction");
   var assertion1left = document.getElementById("testAssertion1LeftSide");
   var assertion2left = document.getElementById("testAssertion2LeftSide");
   var assertion3left = document.getElementById("testAssertion3LeftSide");
@@ -44,6 +45,7 @@ function disableAssertions() {
   var assertion3right = document.getElementById("testAssertion3RightSide");
 
   if (checkBox.checked == true) {
+    testFunction.disabled = true;
     assertion1left.disabled = true;
     assertion2left.disabled = true;
     assertion3left.disabled = true;
@@ -51,6 +53,7 @@ function disableAssertions() {
     assertion2right.disabled = true;
     assertion3right.disabled = true;
   } else {
+    testFunction.disabled = false;
     assertion1left.disabled = false;
     assertion2left.disabled = false;
     assertion3left.disabled = false;
