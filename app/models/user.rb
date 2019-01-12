@@ -40,14 +40,11 @@ def self.validate_email(email)
 	else
 		return true
 	end
+end
 
 def self.get_email_address_only(email)
 	a = Mail::Address.new(email)
 	return a.address
 end
-
-end
-
-
 
 end
