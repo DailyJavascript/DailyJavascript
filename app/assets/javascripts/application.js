@@ -31,4 +31,31 @@ function submitChallenge(code) {
   xhttp.open("POST","https://dailyjavascript.herokuapp.com/challenges",true);
   xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
   xhttp.send("challenge="+challenge+"&code="+code);
-} // end function
+} // end function submitChallenge(code)
+
+function disableAssertions() {
+  var checkBox = document.getElementById("notChallengeCheckBox");
+  var assertion1left = document.getElementById("testAssertion1LeftSide");
+  var assertion2left = document.getElementById("testAssertion2LeftSide");
+  var assertion3left = document.getElementById("testAssertion3LeftSide");
+
+  var assertion1right = document.getElementById("testAssertion1RightSide");
+  var assertion2right = document.getElementById("testAssertion2RightSide");
+  var assertion3right = document.getElementById("testAssertion3RightSide");
+
+  if (checkBox.checked == true) {
+    assertion1left.disabled = true;
+    assertion2left.disabled = true;
+    assertion3left.disabled = true;
+    assertion1right.disabled = true;
+    assertion2right.disabled = true;
+    assertion3right.disabled = true;
+  } else {
+    assertion1left.disabled = false;
+    assertion2left.disabled = false;
+    assertion3left.disabled = false;
+    assertion1right.disabled = false;
+    assertion2right.disabled = false;
+    assertion3right.disabled = false;
+  }
+} // end function disableAssertions() 
