@@ -30,10 +30,11 @@ function submitChallenge(code) {
   } // end xhttp.onreadystatechange = function()
   xhttp.open("POST","https://dailyjavascript.herokuapp.com/challenges",true);
   xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-  xhttp.send("challenge="+challenge+"&code="+code);
+  xhttp.send("challenge="+challenge+"&code="+code+getAssertions());
 } // end function submitChallenge(code)
 
 function disableAssertions() {
+  var disabledStatus = false;
   var checkBox = document.getElementById("notChallengeCheckBox");
   var testFunction = document.getElementById("testFunction");
   var assertion1left = document.getElementById("testAssertion1LeftSide");
@@ -45,20 +46,35 @@ function disableAssertions() {
   var assertion3right = document.getElementById("testAssertion3RightSide");
 
   if (checkBox.checked == true) {
-    testFunction.disabled = true;
-    assertion1left.disabled = true;
-    assertion2left.disabled = true;
-    assertion3left.disabled = true;
-    assertion1right.disabled = true;
-    assertion2right.disabled = true;
-    assertion3right.disabled = true;
-  } else {
-    testFunction.disabled = false;
-    assertion1left.disabled = false;
-    assertion2left.disabled = false;
-    assertion3left.disabled = false;
-    assertion1right.disabled = false;
-    assertion2right.disabled = false;
-    assertion3right.disabled = false;
+    disabledStatus = true;
   }
+
+  testFunction.disabled = disabledStatus;
+  assertion1left.disabled = disabledStatus;
+  assertion2left.disabled = disabledStatus;
+  assertion3left.disabled = disabledStatus;
+  assertion1right.disabled = disabledStatus;
+  assertion2right.disabled = disabledStatus;
+  assertion3right.disabled = disabledStatus;
 } // end function disableAssertions() 
+
+function getAssertions() {
+  var values;
+  var checkBox = document.getElementById("notChallengeCheckBox");
+
+  if (checkBox.checked == false) {
+    var testFunction = document.getElementById("testFunction").value.trim();
+    var assertion1left = document.getElementById("testAssertion1LeftSide").value.trim();
+    var assertion2left = document.getElementById("testAssertion2LeftSide").value.trim();
+    var assertion3left = document.getElementById("testAssertion3LeftSide").value.trim();
+
+    var assertion1right = document.getElementById("testAssertion1RightSide").value.trim();
+    var assertion2right = document.getElementById("testAssertion2RightSide").value.trim();
+    var assertion3right = document.getElementById("testAssertion3RightSide").value.trim()
+    values = "&notChallenge=false&testFunction="+testFunction+"&assertion1left="+assertion1left+"&assertion2left="+assertion2left+"&assertion3left="+assertion3left+"&assertion1right="+assertion1right+"&assertion2right="+assertion2right+"&assertion3right="+assertion3right;
+  } else {
+    values = "&notChallenge=true";
+  }
+
+  return values;
+} // end function getAssertions()
