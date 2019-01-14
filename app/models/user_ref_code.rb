@@ -1,2 +1,3 @@
 class UserRefCode < ApplicationRecord
+#
 end
