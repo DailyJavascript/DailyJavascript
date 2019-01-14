@@ -9,9 +9,9 @@ class ChallengesController < ApplicationController
 	end
 
 	def create
-		puts params[:challenge]
-		puts params[:code]
-		c = Challenge.new(challenge: params[:challenge])
+		puts params.permit(:challenge)
+		puts params.permit(:challenge).inspect
+		c = Challenge.new(challenge: params.permit(:challenge)[:challenge])
 		if (Challenge.count > 0)
 			current_id = Challenge.order(:id).last.id.to_i + 1
 			c.id = current_id
