@@ -1,7 +1,5 @@
 class Challenge < ApplicationRecord
-	has_many :users
-
-
+	
 	def self.mail_next_challenge
 		users = User.all
 		if users.present? 

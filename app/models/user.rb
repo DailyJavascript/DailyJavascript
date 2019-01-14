@@ -3,8 +3,10 @@ require 'securerandom'
 require 'mail'
 
 
-has_many :challenges
+has_many :user_challenges
 has_one :subscription
+has_one :visit
+has_one :visitor_activity, through: :visit
 
 validates :email, uniqueness: true
 
