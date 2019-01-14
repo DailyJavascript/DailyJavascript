@@ -56,11 +56,11 @@ class Challenge < ApplicationRecord
 
 		left_assertions = []
 		right_assertions = []
-		test_function = params["testFunction"].strip
+		test_function = params.permit(:testFunction)["testFunction"].strip
 		
 		3.downto(1) do |x|
-			left_assertions.push(params["assertion#{x}left"].strip)
-			right_assertions.push(params["assertion#{x}right"].strip)
+			left_assertions.push(params.permit("assertion#{x}left")["assertion#{x}left"].strip)
+			right_assertions.push(params.permit("assertion#{x}right")["assertion#{x}right"].strip)
 		end
 		
 		assertions = ""

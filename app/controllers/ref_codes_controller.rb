@@ -5,14 +5,14 @@ layout "ref_codes"
 	end
 
 	def create
-		rc = RefCode.new(recipient_name: params["recipientName"], recipient_url: params["recipientURL"], recipient_email: params["recipientEmail"], email_content: params["emailContent"])
+		rc = RefCode.new(recipient_name: params.permit("recipientName")["recipientName"], recipient_url: params.permit("recipientURL")["recipientURL"], recipient_email: params.permit("recipientEmail")["recipientEmail"], email_content: params.permit("emailContent")["emailContent"])
 		rc.ref_code = RefCode.create_new_ref_code
 		rc.ref_code_url = "?refcode="+rc.ref_code.to_s
 		rc.save
-		if (!params["recipientEmail"].to_s.blank? && params["emailContent"].to_s.blank?)
-			UserMailer.invite_email(params["recipientEmail"].to_s, 0, "", rc.ref_code_url).deliver_now
-		elsif (!params["recipientEmail"].to_s.blank? && !params["emailContent"].to_s.blank?)
-			UserMailer.invite_email(params["recipientEmail"].to_s, 1, params["emailContent"].to_s, rc.ref_code_url).deliver_now
+		if (!params.permit("recipientEmail")["recipientEmail"].to_s.blank? && params.permit("emailContent")["emailContent"].to_s.blank?)
+			UserMailer.invite_email(params.permit("recipientEmail")["recipientEmail"].to_s, 0, "", rc.ref_code_url).deliver_now
+		elsif (!params.permit("recipientEmail")["recipientEmail"].to_s.blank? && !params.permit("emailContent")["emailContent"].to_s.blank?)
+			UserMailer.invite_email(params.permit("recipientEmail")["recipientEmail"].to_s, 1, params.permit("emailContent")["emailContent"].to_s, rc.ref_code_url).deliver_now
 		end
 		render plain: "it worked!"
 	end

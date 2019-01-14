@@ -14,13 +14,13 @@ class UsersController < ApplicationController
 
 	def create
 		t = DateTime.now
-		if (!User.find_by(email: params[:email]).nil?)
+		if (!User.find_by(email: params.permit(:email)[:email]).nil?)
 			modify_membership
 		else
-			emailValid = User.validate_email(params["email"])
+			emailValid = User.validate_email(params.permit(:email)["email"])
 			if (emailValid)
-				em = User.get_email_address_only(params[:email])
-				u = User.new(email: em, email_verified: false, email_verification_code: nil, unsubscribe_code: nil, date_joined: t, membership_level: params[:membership_level], date_current_membership_level: t, membership_level_history: nil)
+				em = User.get_email_address_only(params.permit(:email)[:email])
+				u = User.new(email: em, email_verified: false, email_verification_code: nil, unsubscribe_code: nil, date_joined: t, membership_level: params.permit(:membership_level)[:membership_level], date_current_membership_level: t, membership_level_history: nil)
 				mc = params[:membership_code].to_s
 				output = "bad"
 				if u.save
@@ -29,11 +29,11 @@ class UsersController < ApplicationController
 					u.email_verification_code = User.createEmailVerificationCode
 					u.unsubscribe_code = User.createUnsubscribeCode
 					membership_level_history = {}
-					membership_level_history["level"] = params[:membership_level].to_s
+					membership_level_history["level"] = params.permit(:membership_level)[:membership_level].to_s
 					membership_level_history["date"] = t
 					u.membership_level_history = JSON.generate(membership_level_history)
 					if mc == "2"
-						result = Subscription.subscribe(u, params[:stripe_token_id], params[:email], params[:membership_level])
+						result = Subscription.subscribe(u, params.permit(:stripe_token_id)[:stripe_token_id], params.permit(:email)[:email], params.permit(:membership_level)[:membership_level])
 					end
 					if (mc == "2" && result == 2)
 						u.delete
@@ -42,8 +42,8 @@ class UsersController < ApplicationController
 						UserMailer.welcome_email(u.email, u.id).deliver_now
 						output = "good"
 					end
-					if (!params["visitID"].nil?)
-						v = Visit.find(params["visitID"])
+					if (!params.permit("visitID")["visitID"].nil?)
+						v = Visit.find(params.permit("visitID")["visitID"])
 						v.signed_up = true
 						v.date_signed_up = DateTime.now
 						if (u.present?)
@@ -64,20 +64,20 @@ class UsersController < ApplicationController
 		result = 1
 		output = "good"
 		if ((u.membership_level == "free") && (params[:membership_level] != "free"))
-			result = Subscription.subscribe(u, params[:stripe_token_id], params[:email], params[:membership_level])
+			result = Subscription.subscribe(u, params.permit(:stripe_token_id)[:stripe_token_id], params.permit(:email)[:email], params.permit(:membership_level)[:membership_level])
 		elsif ((u.membership_level != "free") && (params[:membership_level] == "free"))
 			Subscription.cancel_subscription(u.subscription.subscription_id)
 			u.subscription.delete
 		elsif ((u.membership_level == "standard") && (params[:membership_level] == "premium"))
 			Subscription.cancel_subscription(u.subscription.subscription_id)
 			u.subscription.delete
-			result = Subscription.subscribe(u, params[:stripe_token_id], params[:email], params[:membership_level])
+			result = Subscription.subscribe(u, params.permit(:stripe_token_id)[:stripe_token_id], params.permit(:email)[:email], params.permit(:membership_level)[:membership_level])
 		elsif ((u.membership_level == "premium") && (params[:membership_level] == "standard"))
 			Subscription.cancel_subscription(u.subscription.subscription_id)
 			u.subscription.delete
-			result = Subscription.subscribe(u, params[:stripe_token_id], params[:email], params[:membership_level])
+			result = Subscription.subscribe(u, params.permit(:stripe_token_id)[:stripe_token_id], params.permit(:email)[:email], params.permit(:membership_level)[:membership_level])
 		end
-		u.membership_level = params[:membership_level]
+		u.membership_level = params.permit(:membership_level)[:membership_level]
 		u.save
 		if (result == 2)
 			output = "bad"

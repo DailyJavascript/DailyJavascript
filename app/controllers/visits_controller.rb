@@ -5,7 +5,7 @@ class VisitsController < ApplicationController
 		rc = nil
 		bv = false
 		if (!params["refcode"].nil?)
-			rc = params["refcode"]
+			rc = params.permit("refcode")["refcode"]
 		end
 		if (!params["blogVisit"].nil?)
 			if (params["blogVisit"] == "1")
@@ -44,21 +44,21 @@ class VisitsController < ApplicationController
 			value = true
 		elsif (field == "section_ids")
 			arr = va.section_ids.split(",")
-			value = arr.to_set.add(params["value"]).to_a.sort.join(",")
+			value = arr.to_set.add(params.permit("value")["value"]).to_a.sort.join(",")
 		elsif (field == "email_input_value")
 			if (va.email_input_value == "")
-				value = params["value"]
+				value = params.permit("value")["value"]
 			else
-				value = va.email_input_value + "," + params["value"]
+				value = va.email_input_value + "," + params.permit("value")["value"]
 			end
 		elsif (field == "plan")
 			if (va.plan == "")
-				value = params["value"]
+				value = params.permit("value")["value"]
 			else
-				value = va.plan + "," + params["value"]
+				value = va.plan + "," + params.permit("value")["value"]
 			end
 		else
-			value = params["value"]
+			value = params.permit("value")["value"]
 		end
 				
 		va[field] = value
