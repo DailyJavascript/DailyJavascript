@@ -17,6 +17,9 @@ class ChallengesController < ApplicationController
 			c.id = current_id
 		end
 		if c.save
+			if params["notChallenge"] == "false"
+				Challenge.insert_assertions(c.id, params)
+			end
 			if params[:code].to_i == 1
 				Challenge.mail_next_challenge
 			end

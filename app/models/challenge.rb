@@ -51,5 +51,31 @@ class Challenge < ApplicationRecord
 		end
 	end
 
+	def self.insert_assertions(c_id, params)
+		challenge = Challenge.find(c_id)
+
+		left_assertions = []
+		right_assertions = []
+		test_function = params["testFunction"].strip
+		
+		3.downto(1).times do |x|
+			left_assertions.push(params["assertion#{x}left"].strip)
+			right_assertions.push(params["assertion#{x}right"].strip)
+		end
+		
+		assertions = ""
+		
+		left_assertions.length.times do |x|
+			l_a = left_assertions.pop
+			r_a = right_assertions.pop
+			if !l_a.blank? && !r_a.blank?
+				assertions = "#{assertions}\n it('will return #{r_a}', function(){\n expect(#{test_function}(#{l_a})).toEqual(#{r_a})\n });"
+			end
+		end
+		
+		full_assertion_statement = "describe('#{test_function}', function(){  #{assertions} \n });"
+		challenge.test_assertions = full_assertion_statement
+		challenge.save
+	end
 
 end
