@@ -69,7 +69,8 @@ class Challenge < ApplicationRecord
 			l_a = left_assertions.pop
 			r_a = right_assertions.pop
 			if !l_a.blank? && !r_a.blank?
-				assertions = "#{assertions}\n it('will return #{r_a}', function(){\n expect(#{test_function}(#{l_a})).toEqual(#{r_a})\n });"
+				r_a_stripped = r_a.gsub("'","")
+				assertions = "#{assertions}\n it('will return #{r_a_stripped}', function(){\n expect(#{test_function}(#{l_a})).toEqual(#{r_a})\n });"
 			end
 		end
 		
