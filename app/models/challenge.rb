@@ -58,7 +58,7 @@ class Challenge < ApplicationRecord
 		right_assertions = []
 		test_function = params["testFunction"].strip
 		
-		3.downto(1).times do |x|
+		3.downto(1) do |x|
 			left_assertions.push(params["assertion#{x}left"].strip)
 			right_assertions.push(params["assertion#{x}right"].strip)
 		end
