@@ -11,4 +11,8 @@ class UserMailerPreview < ActionMailer::Preview
   def invite_email
     UserMailer.with(user: User.first).invite_email('yo2@example.com', 'free', 'welcome to daily javascript', '4342')
   end
+
+  def first_product_feedback_email
+    UserMailer.with(user: User.first).first_product_feedback_email('yo2@example.com')
+  end
 end
