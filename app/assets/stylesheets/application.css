@@ -23,3 +23,38 @@
 	margin-left: -100%;
 	background-color: pink;
 }
+
+.logo-header {
+	width: 100%; 
+	background-color: rgb(243, 223, 73); 
+	color: black; 
+	font-family: Futura, 'Trebuchet MS', Arial, sans-serif; 
+	padding: 0.5em 0; 
+	margin: 0 0 1em 0; 
+	text-align: center;
+}
+
+.goodbye-message {
+	font-family: Futura, 'Trebuchet MS', Arial, sans-serif;
+	font-size: 1.7rem;
+	text-align: center; 
+}
+
+.flex {
+	display:flex;
+	width: 100%;
+	justify-content: center;
+}
+
+.unsubscribe-failure-message {
+	font-family: Futura, 'Trebuchet MS', Arial, sans-serif;
+	font-size: 1.4rem;
+	margin: 1rem;
+}
+
+.unsubscribe-failure-message-body {
+	font-family: Futura, 'Trebuchet MS', Arial, sans-serif;
+	font-size: 1.2rem;
+	margin: 1rem;
+	text-align: justify;
+}
