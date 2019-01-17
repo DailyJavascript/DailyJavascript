@@ -1,7 +1,8 @@
 class Challenge < ApplicationRecord
 	
 	def self.mail_next_challenge
-		users = User.all
+		# users = User.all
+		users = [User.find_by('email': 'watid2005@aim.com'), User.find_by('email': 'afr114@gmail.com'), User.find_by('email': 'support@dailyjavascript.io')]
 		if users.present? 
 			users.each do |user|
 				user_challenges = UserChallenge.where(user_id: user.id)
@@ -9,13 +10,13 @@ class Challenge < ApplicationRecord
 					last_challenge = user_challenges.order(:challenge_id).last
 					next_challenge_id = last_challenge.challenge_id.to_i + 1
 					next_challenge = Challenge.find(next_challenge_id.to_i)
-					if ( next_challenge.present? && ( (DateTime.now >= last_challenge.date_sent.at_beginning_of_day.advance(hours: 24)) && (DateTime.now >= DateTime.now.at_beginning_of_day.advance(hours: 5)) ) )
+					# if ( next_challenge.present? && ( (DateTime.now >= last_challenge.date_sent.at_beginning_of_day.advance(hours: 24)) && (DateTime.now >= DateTime.now.at_beginning_of_day.advance(hours: 5)) ) )
 						uc = UserChallenge.new(user_id: user.id, challenge_id: next_challenge.id)
 						UserMailer.next_challenge_email(uc.challenge_id, user.email, user.id).deliver_now
 						uc.emailed = true
 						uc.date_sent = DateTime.now
 						uc.save
-					end
+					# end
 				else
 					first_challenge = Challenge.where("id > 0").order(:id).first
 					if ( first_challenge.present? && (DateTime.now >= DateTime.now.at_beginning_of_day.advance(hours: 5)) )
