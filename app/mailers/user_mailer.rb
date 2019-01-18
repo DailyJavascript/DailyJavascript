@@ -24,4 +24,9 @@ class UserMailer < ApplicationMailer
 		@recipient_email = user_email_address
 		mail(to: @recipient_email, subject: "Help us help you.")
 	end
+
+	def apology_email(user_email_address)
+		@recipient_email = user_email_address
+		mail(to: @recipient_email, subject: "We're sorry.")
+	end
 end
