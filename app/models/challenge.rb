@@ -66,14 +66,14 @@ class Challenge < ApplicationRecord
 		left_assertions = []
 		right_assertions = []
 		test_function = params.permit(:testFunction)["testFunction"].strip
-		
+
 		3.downto(1) do |x|
 			left_assertions.push(params.permit("assertion#{x}left")["assertion#{x}left"].strip)
 			right_assertions.push(params.permit("assertion#{x}right")["assertion#{x}right"].strip)
 		end
-		
+
 		assertions = ""
-		
+
 		left_assertions.length.times do |x|
 			l_a = left_assertions.pop
 			r_a = right_assertions.pop
@@ -82,7 +82,7 @@ class Challenge < ApplicationRecord
 				assertions = "#{assertions}\n it('will return #{r_a_stripped}', function(){\n expect(#{test_function}(#{l_a})).toEqual(#{r_a})\n });"
 			end
 		end
-		
+
 		full_assertion_statement = "describe('#{test_function}', function(){  #{assertions} \n });"
 		challenge.test_assertions = full_assertion_statement
 		challenge.save
