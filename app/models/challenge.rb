@@ -37,14 +37,25 @@ class Challenge < ApplicationRecord
 		if challenges.present? && last_user_challenge.present?
 			if DateTime.now >= last_user_challenge.date_sent.at_beginning_of_day.advance(hours: 24)
 				t = Time.now
-				if ( (t >= Time.now.at_beginning_of_day.advance(hours: 11)) && (t <= Time.now.at_beginning_of_day.advance(hours: 17)) ) 
+				if ( (t >= Time.now.at_beginning_of_day.advance(hours: 11)) && (t <= Time.now.at_beginning_of_day.advance(hours: 17)) )
 					mail_next_challenge
 				end
 			end
 		elsif challenges.present?
 			t = Time.now
-			if ( (t >= Time.now.at_beginning_of_day.advance(hours: 11)) && (t <= Time.now.at_beginning_of_day.advance(hours: 17)) ) 
-					mail_next_challenge
+			if ( (t >= Time.now.at_beginning_of_day.advance(hours: 11)) && (t <= Time.now.at_beginning_of_day.advance(hours: 17)) )
+				mail_next_challenge
+			end
+		end
+	end
+
+	def self.check_if_user_challenge_is_seven
+		users = User.all
+		if users.present?
+			users.each do |user|
+				if user.user_challenges.present? && user.user_challenges.last.challenge_id == 7
+					UserMailer.first_product_feedback_email(user.email).deliver_now
+				end
 			end
 		end
 	end
