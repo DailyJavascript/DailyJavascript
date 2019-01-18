@@ -37,14 +37,25 @@ class Challenge < ApplicationRecord
 		if challenges.present? && last_user_challenge.present?
 			if DateTime.now >= last_user_challenge.date_sent.at_beginning_of_day.advance(hours: 24)
 				t = Time.now
-				if ( (t >= Time.now.at_beginning_of_day.advance(hours: 11)) && (t <= Time.now.at_beginning_of_day.advance(hours: 17)) ) 
+				if ( (t >= Time.now.at_beginning_of_day.advance(hours: 11)) && (t <= Time.now.at_beginning_of_day.advance(hours: 17)) )
 					mail_next_challenge
 				end
 			end
 		elsif challenges.present?
 			t = Time.now
-			if ( (t >= Time.now.at_beginning_of_day.advance(hours: 11)) && (t <= Time.now.at_beginning_of_day.advance(hours: 17)) ) 
-					mail_next_challenge
+			if ( (t >= Time.now.at_beginning_of_day.advance(hours: 11)) && (t <= Time.now.at_beginning_of_day.advance(hours: 17)) )
+				mail_next_challenge
+			end
+		end
+	end
+
+	def self.check_if_user_challenge_is_seven
+		users = User.all
+		if users.present?
+			users.each do |user|
+				if user.user_challenges.present? && user.user_challenges.last.challenge_id == 7
+					UserMailer.first_product_feedback_email(user.email).deliver_now
+				end
 			end
 		end
 	end
@@ -55,14 +66,14 @@ class Challenge < ApplicationRecord
 		left_assertions = []
 		right_assertions = []
 		test_function = params.permit(:testFunction)["testFunction"].strip
-		
+
 		3.downto(1) do |x|
 			left_assertions.push(params.permit("assertion#{x}left")["assertion#{x}left"].strip)
 			right_assertions.push(params.permit("assertion#{x}right")["assertion#{x}right"].strip)
 		end
-		
+
 		assertions = ""
-		
+
 		left_assertions.length.times do |x|
 			l_a = left_assertions.pop
 			r_a = right_assertions.pop
@@ -71,7 +82,7 @@ class Challenge < ApplicationRecord
 				assertions = "#{assertions}\n it('will return #{r_a_stripped}', function(){\n expect(#{test_function}(#{l_a})).toEqual(#{r_a})\n });"
 			end
 		end
-		
+
 		full_assertion_statement = "describe('#{test_function}', function(){  #{assertions} \n });"
 		challenge.test_assertions = full_assertion_statement
 		challenge.save

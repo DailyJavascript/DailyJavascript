@@ -15,4 +15,8 @@ class UserMailerPreview < ActionMailer::Preview
   def first_product_feedback_email
     UserMailer.with(user: User.first).first_product_feedback_email('yo2@example.com')
   end
+
+  def apology_email
+    UserMailer.with(user: User.first).apology_email('yo2@example.com')
+  end
 end

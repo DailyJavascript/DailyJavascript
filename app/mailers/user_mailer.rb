@@ -20,8 +20,13 @@ class UserMailer < ApplicationMailer
 		mail(to: recipient_email, subject: "Improve your programming skills and get prepped for your coding interview - become a member of Daily Javascript")
 	end
 
-	def first_product_feedback_email(recipient_email)
-		@recipient_email = recipient_email
-		mail(to: recipient_email, subject: "Help us help you.")
+	def first_product_feedback_email(user_email_address)
+		@recipient_email = user_email_address
+		mail(to: @recipient_email, subject: "Help us help you.")
+	end
+
+	def apology_email(user_email_address)
+		@recipient_email = user_email_address
+		mail(to: @recipient_email, subject: "We're sorry.")
 	end
 end
