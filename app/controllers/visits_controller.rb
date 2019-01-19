@@ -18,6 +18,10 @@ class VisitsController < ApplicationController
 		end
 		v = Visit.create(ref_code: rc, date_first_visited: DateTime.now, signed_up: false, from_blog: bv)
 		v.create_visitor_activity(section_ids: "", did_click_input: false, email_input_value: "", did_click_payment: false, did_click_test_page: false, did_click_upgrade_link: false, plan: "")
+		puts v
+		puts v.inspect
+		puts v.id
+		puts v.id.inspect
 		render plain: v.id
 	end
 
