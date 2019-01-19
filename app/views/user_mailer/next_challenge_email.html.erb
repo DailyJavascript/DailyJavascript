@@ -17,7 +17,10 @@ Hi Daily JavaScripter,
 	<%= line %>
 </p>
 <% end %>
-
+<% if @user.id == 108 %>
+	<% link="https://wizardly-neumann-a9187c.netlify.com/?id=#{@next_challenge.id}&user_id=108" %>
+	<p style="margin: 0 0 1em 0;">Once you have your solution, click <a target=”_blank” href=<%=link%>>here</a> to test your code.</p>
+<% end %>
 <p>Good luck!</p>
 <p>&nbsp;</p>
 
