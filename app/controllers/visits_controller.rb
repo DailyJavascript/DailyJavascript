@@ -4,10 +4,6 @@ class VisitsController < ApplicationController
 	def create
 		rc = nil
 		bv = false
-		puts params.permit("refcode")
-		puts params.permit("refcode").inspect
-		puts params.permit("refcode")["refcode"]
-		puts params.permit("refcode")["refcode"].inspect
 		if (!params.permit("refcode")["refcode"].nil?)
 			rc = params.permit("refcode")["refcode"]
 		end
@@ -18,10 +14,6 @@ class VisitsController < ApplicationController
 		end
 		v = Visit.create(user_id: 0, ref_code: rc, date_first_visited: DateTime.now, signed_up: false, from_blog: bv)
 		v.create_visitor_activity(section_ids: "", did_click_input: false, email_input_value: "", did_click_payment: false, did_click_test_page: false, did_click_upgrade_link: false, plan: "")
-		puts v
-		puts v.inspect
-		puts v.id
-		puts v.id.inspect
 		render plain: v.id
 	end
 
