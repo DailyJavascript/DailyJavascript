@@ -53,7 +53,6 @@ def self.send_apology_email
 	users = User.all
 	if users.present?
 		users.each do |user|
-			puts user.email
 			UserMailer.apology_email(user.email).deliver_now
 		end
 	end
