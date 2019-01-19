@@ -49,11 +49,11 @@ class Challenge < ApplicationRecord
 		end
 	end
 
-	def self.check_if_user_challenge_is_seven
+	def self.check_if_user_challenge_is_seven_then_send_out_first_product_feedback_email
 		users = User.all
 		if users.present?
 			users.each do |user|
-				if user.user_challenges.present? && user.user_challenges.last.challenge_id == 7
+				if user.user_challenges.present? && user.user_challenges.order(:challenge_id).last.challenge_id == 7
 					UserMailer.first_product_feedback_email(user.email).deliver_now
 				end
 			end
