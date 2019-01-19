@@ -4,11 +4,15 @@ class VisitsController < ApplicationController
 	def create
 		rc = nil
 		bv = false
-		if (!params["refcode"].nil?)
+		puts params.permit("refcode")
+		puts params.permit("refcode").inspect
+		puts params.permit("refcode")["refcode"]
+		puts params.permit("refcode")["refcode"].inspect
+		if (!params.permit("refcode")["refcode"].nil?)
 			rc = params.permit("refcode")["refcode"]
 		end
-		if (!params["blogVisit"].nil?)
-			if (params["blogVisit"] == "1")
+		if (!params.permit("blogVisit")["blogVisit"].nil?)
+			if (params.permit("blogVisit")["blogVisit"] == "1")
 				bv = true
 			end
 		end
