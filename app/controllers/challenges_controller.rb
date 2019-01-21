@@ -1,6 +1,7 @@
 class ChallengesController < ApplicationController
 
 	def new
+		#
 	end
 
 	def show
