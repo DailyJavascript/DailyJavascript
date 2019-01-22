@@ -10,7 +10,8 @@ class CreateUsers < ActiveRecord::Migration[5.1]
       t.datetime :date_current_membership_level
       t.text :membership_level_history
       t.boolean :active
-
+      t.bigint :price_plan_id
+      
       t.timestamps
     end
   end

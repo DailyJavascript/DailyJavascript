@@ -1,0 +1,2 @@
+class PricePlan < ApplicationRecord
+end
