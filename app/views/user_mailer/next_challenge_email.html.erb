@@ -17,7 +17,7 @@ Hi Daily JavaScripter,
 	<%= line %>
 </p>
 <% end %>
-<% if [108, 103, 63].include? @user.id %>
+<% if [103, 63].include? @user.id %>
 	<% link="https://wizardly-neumann-a9187c.netlify.com/?id=#{@next_challenge.id}&user_id=#{@user.id}" %>
 	<p style="margin: 0 0 1em 0;">Once you have your solution, click <a target=”_blank” href=<%=link%>>here</a> to test your code.</p>
 <% end %>
