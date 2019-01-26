@@ -1,7 +1,7 @@
 class Challenge < ApplicationRecord
 	
 	def self.mail_next_challenge
-		users = User.all
+		users = User.where("id > 0").order(:id)
 		if users.present? 
 			users.each do |user|
 				user_challenges = UserChallenge.where(user_id: user.id)
