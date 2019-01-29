@@ -5,7 +5,7 @@ class ChallengesController < ApplicationController
 	end
 
 	def show
-		if ['admin'].include? params[:user_id]
+		if ['admin', '165'].include? params[:user_id]
 			@challenge = Challenge.find(params[:id])
 		else
 			@challenge = Challenge.find(0)
