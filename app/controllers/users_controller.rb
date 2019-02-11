@@ -20,8 +20,9 @@ class UsersController < ApplicationController
 				response = pp.price1
 			end
 			render plain: response
+		else
+			render plain: response
 		end
-		render plain: response
 	end
 
 	def create
