@@ -6,7 +6,6 @@ class UserMailer < ApplicationMailer
 		mail(to: user_email_address, subject: 'Welcome to Daily JavaScript')
 	end
 
-
 	def next_challenge_email(challenge_id, user_email_address, user_id)
 		@user = User.find(user_id)
 		@next_challenge = Challenge.find(challenge_id)
@@ -28,5 +27,9 @@ class UserMailer < ApplicationMailer
 	def apology_email(user_email_address)
 		@recipient_email = user_email_address
 		mail(to: @recipient_email, subject: "We're sorry.")
+	end
+
+	def special_offer_email(user_email_address)
+		mail(to: user_email_address, subject: "As appreciation for your membership")
 	end
 end
