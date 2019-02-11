@@ -41,6 +41,9 @@ class UsersController < ApplicationController
 					u.reload
 					u.email_verification_code = User.createEmailVerificationCode
 					u.unsubscribe_code = User.createUnsubscribeCode
+					if ((!params[:membership_level] != "premium") && (!params[:membership_level] != "free"))
+						params[:membership_level] = PricePlan.find_by(url_code: params.permit(:membership_level)[:membership_level]).name
+					end
 					membership_level_history = {}
 					membership_level_history["level"] = params.permit(:membership_level)[:membership_level].to_s
 					membership_level_history["date"] = t
@@ -74,8 +77,8 @@ class UsersController < ApplicationController
 
 	def modify_membership
 		u = User.find_by(email: params[:email])
-		if (!params[:special_offer_code].nil?)
-			params[:membership_level] = PricePlan.find_by(url_code: params.permit(:special_offer_code)[:special_offer_code]).name
+		if ((!params[:membership_level] != "premium") && (!params[:membership_level] != "free"))
+			params[:membership_level] = PricePlan.find_by(url_code: params.permit(:membership_level)[:membership_level]).name
 		end
 		result = 1
 		output = "good"
