@@ -12,6 +12,18 @@ class UsersController < ApplicationController
 		end
 	end
 
+	def get_price
+		response = "not found"
+		if (!params["special_offer_code"].nil?)
+			pp = PricePlan.find_by(url_code: params.permit(:special_offer_code)[:special_offer_code])
+			if (pp.present?)
+				response = pp.price1
+			end
+			render plain: response
+		end
+		render plain: response
+	end
+
 	def create
 		t = DateTime.now
 		if (!User.find_by(email: params.permit(:email)[:email]).nil?)
