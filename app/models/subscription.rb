@@ -24,10 +24,31 @@ class Subscription < ApplicationRecord
 			:items => [{plan: 'plan_E4NTjVQ20QVTw2'}]
 		)
 	  elsif (plan.to_s == "premium")
-		subscription = Stripe::Subscription.create(
+		# the plan id was plan_E4NS1UaD5Q8q1D which referred to the $10 monthly plan. 
+    subscription = Stripe::Subscription.create(
 			:customer => customer.id,
-			:items => [{plan: 'plan_E4NS1UaD5Q8q1D'}]
-		 )	  	
+			:items => [{plan: 'plan_E4NTjVQ20QVTw2'}]
+		 )
+    elsif (plan.to_s == "$4_special_offer")
+    subscription = Stripe::Subscription.create(
+      :customer => customer.id,
+      :items => [{plan: 'plan_EVixgpsNJ5YGiR'}]
+     )
+    elsif (plan.to_s == "$3_special_offer")
+    subscription = Stripe::Subscription.create(
+      :customer => customer.id,
+      :items => [{plan: 'plan_EViyoedqFRdOPn'}]
+     )
+    elsif (plan.to_s == "$2_special_offer")
+    subscription = Stripe::Subscription.create(
+      :customer => customer.id,
+      :items => [{plan: 'plan_EViyatnMdwdMWE'}]
+     )
+    elsif (plan.to_s == "$1_special_offer")
+    subscription = Stripe::Subscription.create(
+      :customer => customer.id,
+      :items => [{plan: 'plan_EViyGZkzvrz2vY'}]
+     )	  	
 	  end
 
     rescue Stripe::CardError => e

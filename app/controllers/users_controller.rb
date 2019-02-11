@@ -61,6 +61,9 @@ class UsersController < ApplicationController
 
 	def modify_membership
 		u = User.find_by(email: params[:email])
+		if (!params[:special_offer_code].nil?)
+			params[:membership_level] = PricePlan.find_by(url_code: params.permit(:special_offer_code)[:special_offer_code]).name
+		end
 		result = 1
 		output = "good"
 		if ((u.membership_level == "free") && (params[:membership_level] != "free"))
@@ -68,11 +71,7 @@ class UsersController < ApplicationController
 		elsif ((u.membership_level != "free") && (params[:membership_level] == "free"))
 			Subscription.cancel_subscription(u.subscription.subscription_id)
 			u.subscription.delete
-		elsif ((u.membership_level == "standard") && (params[:membership_level] == "premium"))
-			Subscription.cancel_subscription(u.subscription.subscription_id)
-			u.subscription.delete
-			result = Subscription.subscribe(u, params.permit(:stripe_token_id)[:stripe_token_id], params.permit(:email)[:email], params.permit(:membership_level)[:membership_level])
-		elsif ((u.membership_level == "premium") && (params[:membership_level] == "standard"))
+		elsif ((u.membership_level != "free") && (params[:membership_level] != "free"))
 			Subscription.cancel_subscription(u.subscription.subscription_id)
 			u.subscription.delete
 			result = Subscription.subscribe(u, params.permit(:stripe_token_id)[:stripe_token_id], params.permit(:email)[:email], params.permit(:membership_level)[:membership_level])
