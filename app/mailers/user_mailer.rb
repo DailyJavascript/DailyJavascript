@@ -29,7 +29,9 @@ class UserMailer < ApplicationMailer
 		mail(to: @recipient_email, subject: "We're sorry.")
 	end
 
-	def special_offer_email(user_email_address)
-		mail(to: user_email_address, subject: "As appreciation for your membership")
+	def special_offer_email(user_id, special_offer_name)
+		@user = User.find(user_id)
+		@so = PricePlan.find_by(name: special_offer_name)
+		mail(to: @user.email, subject: "In appreciation for your membership")
 	end
 end

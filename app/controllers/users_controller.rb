@@ -33,6 +33,9 @@ class UsersController < ApplicationController
 			emailValid = User.validate_email(params.permit(:email)["email"])
 			if (emailValid)
 				em = User.get_email_address_only(params.permit(:email)[:email])
+				if ((!params[:membership_level] != "premium") && (!params[:membership_level] != "free"))
+					params[:membership_level] = PricePlan.find_by(url_code: params.permit(:membership_level)[:membership_level]).name
+				end
 				u = User.new(email: em, email_verified: false, email_verification_code: nil, unsubscribe_code: nil, date_joined: t, membership_level: params.permit(:membership_level)[:membership_level], date_current_membership_level: t, membership_level_history: nil)
 				mc = params[:membership_code].to_s
 				output = "bad"
@@ -41,9 +44,6 @@ class UsersController < ApplicationController
 					u.reload
 					u.email_verification_code = User.createEmailVerificationCode
 					u.unsubscribe_code = User.createUnsubscribeCode
-					if ((!params[:membership_level] != "premium") && (!params[:membership_level] != "free"))
-						params[:membership_level] = PricePlan.find_by(url_code: params.permit(:membership_level)[:membership_level]).name
-					end
 					membership_level_history = {}
 					membership_level_history["level"] = params.permit(:membership_level)[:membership_level].to_s
 					membership_level_history["date"] = t
