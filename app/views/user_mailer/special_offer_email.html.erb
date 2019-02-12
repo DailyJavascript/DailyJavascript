@@ -1,4 +1,4 @@
-<h2 class="welcome">Our Thanks To You!</h2>
+<h2 class="welcome" style="margin: 0 0 1em 0;">Our Thanks To You!</h2>
 
 <p style="margin: 0 0 1em 0;">Thank you <%= @user.email %>,</p>
  
@@ -6,7 +6,7 @@
 
 <p style="margin: 0 0 1em 0;">In addition to the daily challenge emails, which include actual interview questions from top-grossing tech companies and occasionally lessons and code samples to keep you up-to-date with all aspects of JavaScript, we offer a code editor with unit tests to test your solutions against.</p>
 
-<p style="margin: 0 0 1em 0;">As a thank you for your continued membership, we are offering the code editor at a special 3-month rate of <%= "#{@so.price1}" %> USD per month. You can sign up with this special rate by clicking here: <%= "https://www.dailyjavascript.io/?special_offer_code=#{@so.url_code}" %>, and then scrolling down to the payment plans section. This is a no obligation special offer, as you can cancel at any time. We know the code tester will provide an extra tool to make the challenges more enjoyable and to solidfy the skills demonstrated with each challenge.</p>
+<p style="margin: 0 0 1em 0;">As a thank you for your continued membership, we are offering the code editor at a special 3-month rate of $<%= "#{@so.price1.round}" %> USD per month. You can sign up with this special rate by clicking here: <a href=<%= "https://www.dailyjavascript.io/?special_offer_code=#{@so.url_code}" %> ><%= "https://www.dailyjavascript.io/?special_offer_code=#{@so.url_code}" %></a>, and then scrolling down to the payment plans section. This is a no obligation special offer, as you can cancel at any time. We know the code tester will provide an extra tool to make the challenges more enjoyable and to solidfy the skills demonstrated with each challenge.</p>
 
 <p style="margin: 0 0 1em 0;">Thank you once again for being a continued member.</p>
 
