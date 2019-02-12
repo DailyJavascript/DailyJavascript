@@ -6,7 +6,8 @@ class PricePlan < ApplicationRecord
 		[151,152,158,159,161,163,166,167,169,170,172,8].each do |x|
 			if User.where(id: x).present?
 				UserMailer.special_offer_email(x, "$4_special_offer").deliver_now
-				u = User.find(x).price_plan_id = pp.id
+				u = User.find(x)
+				u.price_plan_id = pp.id
 				u.save
 			end
 		end
@@ -15,7 +16,8 @@ class PricePlan < ApplicationRecord
 		[115,116,117,118,119,127,128,129,133,150,171,160].each do |x|
 			if User.where(id: x).present?
 				UserMailer.special_offer_email(x, "$3_special_offer").deliver_now
-				u = User.find(x).price_plan_id = pp.id
+				u = User.find(x)
+				u.price_plan_id = pp.id
 				u.save
 			end
 		end
@@ -24,7 +26,8 @@ class PricePlan < ApplicationRecord
 		[87,88,89,91,92,96,102,103,107,108,114].each do |x|
 			if User.where(id: x).present?
 				UserMailer.special_offer_email(x, "$2_special_offer").deliver_now
-				u = User.find(x).price_plan_id = pp.id
+				u = User.find(x)
+				u.price_plan_id = pp.id
 				u.save
 			end
 		end
@@ -33,7 +36,8 @@ class PricePlan < ApplicationRecord
 		[46,56,62,63,67,69,73,74,76,86,175].each do |x|
 			if User.where(id: x).present?
 				UserMailer.special_offer_email(x, "$1_special_offer").deliver_now
-				u = User.find(x).price_plan_id = pp.id
+				u = User.find(x)
+				u.price_plan_id = pp.id
 				u.save
 			end
 		end
