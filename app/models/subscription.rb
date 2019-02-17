@@ -25,9 +25,10 @@ class Subscription < ApplicationRecord
 		)
 	  elsif (plan.to_s == "premium")
 		# the plan id was plan_E4NS1UaD5Q8q1D which referred to the $10 monthly plan. 
+    # the plan id was then plan_E4NTjVQ20QVTw2 which referred to $8 per month.
     subscription = Stripe::Subscription.create(
 			:customer => customer.id,
-			:items => [{plan: 'plan_E4NTjVQ20QVTw2'}]
+			:items => [{plan: 'plan_EViyGZkzvrz2vY'}]
 		 )
     elsif (plan.to_s == "$4_special_offer")
     subscription = Stripe::Subscription.create(
