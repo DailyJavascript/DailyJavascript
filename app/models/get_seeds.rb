@@ -31,4 +31,15 @@ class GetSeeds < ApplicationRecord
 		end
 	end
 
+	def self.get_all_seeds
+		self.get_refcode_seeds
+		puts
+		self.get_challenge_seeds
+		puts
+		self.get_user_seeds
+		puts
+		self.get_userchallenge_seeds
+		puts
+		self.get_unsubscribed_seeds
+	end
 end
