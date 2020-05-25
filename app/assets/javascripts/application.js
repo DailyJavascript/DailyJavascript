@@ -17,20 +17,22 @@
 
 function submitChallenge(code) {
   var challenge = document.getElementById("challengeText").value;
+  var token = document.getElementById('authenticity_token').value
   var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
+  xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
-        var response = this.responseText + "";
-        if (response == "good") {
-          alert("Successful");
-        } else if (response == "bad") {
-          alert("Failed");
-        } // end if...else response
+      var response = this.responseText + "";
+      if (response == "good") {
+        alert("Successful");
+      } else if (response == "bad") {
+        alert("Failed");
+      } // end if...else response
     } // end if (this.readyState == 4 && this.status == 200)
   } // end xhttp.onreadystatechange = function()
-  xhttp.open("POST","https://dailyjavascript.herokuapp.com/challenges",true);
-  xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-  xhttp.send("challenge="+challenge+"&code="+code+getAssertions());
+  xhttp.open("POST", "https://dailyjavascript.herokuapp.com/challenges", true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.setRequestHeader("X-CSRF-Token", token)
+  xhttp.send("challenge=" + challenge + "&code=" + code + getAssertions() + getPatternType());
 } // end function submitChallenge(code)
 
 function disableAssertions() {
@@ -71,10 +73,15 @@ function getAssertions() {
     var assertion1right = document.getElementById("testAssertion1RightSide").value.trim();
     var assertion2right = document.getElementById("testAssertion2RightSide").value.trim();
     var assertion3right = document.getElementById("testAssertion3RightSide").value.trim()
-    values = "&notChallenge=false&testFunction="+testFunction+"&assertion1left="+assertion1left+"&assertion2left="+assertion2left+"&assertion3left="+assertion3left+"&assertion1right="+assertion1right+"&assertion2right="+assertion2right+"&assertion3right="+assertion3right;
+    values = "&notChallenge=false&testFunction=" + testFunction + "&assertion1left=" + assertion1left + "&assertion2left=" + assertion2left + "&assertion3left=" + assertion3left + "&assertion1right=" + assertion1right + "&assertion2right=" + assertion2right + "&assertion3right=" + assertion3right;
   } else {
     values = "&notChallenge=true";
   }
 
   return values;
 } // end function getAssertions()
+
+function getPatternType() {
+  var patternType = document.getElementById("pattern_type").value.trim();
+  return "&pattern_type=" + patternType;
+}
