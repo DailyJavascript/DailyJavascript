@@ -24,8 +24,10 @@
 <br>
 <br>
 <br>
-<button onclick="submitChallenge(1);">Email now (do this after 8am EST to email out right away)</button>
+<p>Enter the pattern type</p>
+<p><input type="text" id="pattern_type" style="height: 1.25em; width: 20em;"/></p>
 <br>
 <br>
 <br>
-<button onclick="submitChallenge(2);">Email on schedule (do this before 6am EST and it will be emailed on schedule)</button>
+<button onclick="submitChallenge(1);">Submit New Challenge</button>
+<%= hidden_field_tag :authenticity_token, form_authenticity_token %>
