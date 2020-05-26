@@ -2,6 +2,9 @@ class ChallengesController < ApplicationController
   protect_from_forgery with: :exception
   rescue_from ActionController::InvalidAuthenticityToken, with: :handle_unverified_request_bad
 
+  def index
+  end
+
   def show
     @challenge = if %w[admin].include? params[:user_id]
                    Challenge.find(params[:id])
