@@ -32,7 +32,7 @@ function submitChallenge(code) {
   xhttp.open("POST", "https://dailyjavascript.herokuapp.com/challenges", true);
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xhttp.setRequestHeader("X-CSRF-Token", token)
-  xhttp.send("challenge=" + challenge + "&code=" + code + getAssertions() + getPatternType());
+  xhttp.send("challenge=" + challenge + getAssertions() + getPatternType());
 } // end function submitChallenge(code)
 
 function disableAssertions() {
@@ -73,9 +73,7 @@ function getAssertions() {
     var assertion1right = document.getElementById("testAssertion1RightSide").value.trim();
     var assertion2right = document.getElementById("testAssertion2RightSide").value.trim();
     var assertion3right = document.getElementById("testAssertion3RightSide").value.trim()
-    values = "&notChallenge=false&testFunction=" + testFunction + "&assertion1left=" + assertion1left + "&assertion2left=" + assertion2left + "&assertion3left=" + assertion3left + "&assertion1right=" + assertion1right + "&assertion2right=" + assertion2right + "&assertion3right=" + assertion3right;
-  } else {
-    values = "&notChallenge=true";
+    values = "testFunction=" + testFunction + "&assertion1left=" + assertion1left + "&assertion2left=" + assertion2left + "&assertion3left=" + assertion3left + "&assertion1right=" + assertion1right + "&assertion2right=" + assertion2right + "&assertion3right=" + assertion3right;
   }
 
   return values;
